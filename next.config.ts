@@ -1,0 +1,19 @@
+import type { NextConfig } from "next";
+
+const config: NextConfig = {
+  reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/api/mux-image/:path*",
+        destination: "https://www.shader.se/api/mux-image/:path*",
+      },
+      {
+        source: "/_next/static/media/:path*",
+        destination: "https://www.shader.se/_next/static/media/:path*",
+      },
+    ];
+  },
+};
+
+export default config;
