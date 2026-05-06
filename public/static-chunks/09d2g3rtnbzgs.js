@@ -4845,41 +4845,47 @@
   57781,
   (e) => {
     "use strict";
+    let h = globalThis.__SHADER_HOME_CONTENT__;
     e.s([
       "address",
       0,
       {
-        street: "San Francisco",
-        postalCode: "602 21",
-        city: "San Francisco",
-        country: "America",
-        countryCode: "US",
+        street: h?.contact?.address?.street ?? "Norrkoping",
+        postalCode: h?.contact?.address?.postalCode ?? "602 21",
+        city: h?.contact?.address?.city ?? "Norrkoping",
+        country: h?.contact?.address?.country ?? "Sweden",
+        countryCode: h?.contact?.address?.countryCode ?? "SE",
       },
       "company",
       0,
       {
-        name: "5aitec",
-        legalName: "5aitec",
+        name: h?.schema?.organization?.name ?? "Shader Development Studio",
+        legalName: h?.schema?.organization?.legalName ?? "Shader Sweden AB",
         tagline:
+          h?.document?.description ??
           "Empowering your business with next-generation interactive 3D and AI solutions.",
-        taxID: "5593233140",
+        taxID: h?.schema?.organization?.taxID ?? "5593233140",
       },
       "emails",
       0,
       {
-        general: "hello@5aitec.com",
-        ceo: "hello@5aitec.com",
+        general: h?.contact?.email ?? "hello@shader.se",
+        ceo: h?.contact?.ceoEmail ?? "hello@shader.se",
         secretary: "secretary@shader.se",
       },
       "links",
       0,
-      { bookACall: "https://cal.com/simon-hedlund-kglzne" },
+      { bookACall: h?.contact?.bookCallUrl ?? "https://cal.com/simon-hedlund-kglzne" },
       "social",
       0,
       {
-        linkedin: "https://www.linkedin.com/company/shadersweden/",
-        instagram: "https://www.instagram.com/shadersweden/",
-        twitter: "https://x.com/shadersweden",
+        linkedin:
+          h?.contact?.social?.linkedin ??
+          "https://www.linkedin.com/company/shadersweden/",
+        instagram:
+          h?.contact?.social?.instagram ??
+          "https://www.instagram.com/shadersweden/",
+        twitter: h?.contact?.social?.twitter ?? "https://x.com/shadersweden",
       },
     ]);
   },
@@ -4946,15 +4952,26 @@
   10840,
   (e) => {
     "use strict";
-    let t =
-        "# Built and Backed\n\nI've been a tinkerer all through. I have founded, funded, and figured out life in early-stage startups across India, the Middle East, and beyond.\n",
+    let g = globalThis.__SHADER_HOME_CONTENT__,
+      m = g?.about?.paragraphs ?? [],
+      y = g ? `# ${g.about.title}\n\n${m.slice(0, 2).join("\n\n")}\n` : null,
+      b = g ? `# What We Build\n\n${m.slice(3, 5).join("\n\n")}\n` : null,
+      x = g ? `# Clients and Results\n\n${m.slice(5, 6).join("\n\n")}\n` : null,
+      E = g ? `# Serious About the Future\n\n${m.slice(6, 7).join("\n\n")}\n` : null,
+      v = g ? `# ${g.contact.title}\n\n${g.contact.intro}\n` : null,
+      t =
+        g
+          ? x
+          : "",
       n =
-        "# Making Deep-Tech Real, One Improbable Bet at a Time\n\nSai is a deep-tech builder and investor with 10 years in the game. Serious about startups, based between Bangalore and Dubai, and working with founders building things worth making.\n\nPlugged into the future. While the bets are wild, the process is deliberate. A hand-picked network of collaborators: engineers, designers, operators, and creative technologists, ready to go zero-to-one.\n\nThis modular approach means scaling and adapting to each challenge. Whether it's a Spatial Computing experiment, a Generative AI product, an open source protocol, or a hardware bet, the goal is to help bold founders stand out.\n\nBuilding platforms that demand attention and reward curiosity. Pushing technology to places you haven't seen before, and having fun doing it. Beyond investing, Sai offers mentorship, advisory, and hands-on early stage support.\n\nWhether it's prototyping an idea, launching an augmented reality experience, or bringing a deep-tech product to life, Sai bridges the gap between creative ambition and technical execution. The process is hands-on, collaborative, and tailored for founders who value both craft and speed. Combining technical expertise with a builder's eye, ensuring every interaction compounds. Not your regular advisor. Doesn't troubleshoot printers.\n",
+        y ??
+        "# Making Digital Storytelling More Playful, Powerful, and Alive\n\nShader is a creative development studio specialized in building interactive 3D and AI solutions for the web. Serious about business, based in Sweden, and working with brands, agencies and designers worldwide.\n",
       r =
-        "# For Founders Serious About the Future\n\nIn today's fast-moving startup landscape, you need a partner who has been in the trenches. Sai builds and invests in deep-tech startups through strategic bets and hands-on execution. Ready to go zero-to-one with your team, unlock new verticals, and push your product from viable to loveable. Not just writing cheques — delivering results that compound.\n\nLeveraging state-of-the-art technology to give your startup a decisive competitive advantage. Whether disrupting the market with paradigm-shifting Spatial Computing experiences or building products with cutting-edge Generative AI, the focus is on turnkey solutions that scale. Merging high-performance engineering with a founder's eye to build products that appreciate over time.\n\nReady to take your startup to the next level? Don't waste valuable time. Review the portfolio, crunch the numbers, and you'll see the trajectory points one way: up. Send an email, submit a pitch, or book a call. The future of your product is waiting. Let's execute.\n",
+        E ?? "",
       i =
+        b ??
         "# Stop by. Say hi.\n\nSend an email and I'll get back to you soon. Or submit a pitch — I invest in things and friends I know.\n",
-      o = "# Had Enough Reading? Let's Go Zero-to-One.\n";
+      o = g ? "" : "";
     var s = e.i(44664);
     let a = {
         title: (0, s.getTitle)(n),
@@ -5008,7 +5025,8 @@
     ),
       e.i(57781));
     let h =
-        "# Contact\n\nGot a startup idea or a wild bet you want to discuss. Let's interface, send a mail today!\n",
+        v ??
+        "# Contact\n\nContact us about your digital project idea or general enquires. Let's interface, call us today!\n",
       d = (0, s.getParagraphs)(h),
       p = {
         title: (0, s.getTitle)(h),
@@ -5030,15 +5048,18 @@
   34231,
   (e) => {
     "use strict";
-    let t =
-      "# Sai. A Scrat Chasing the Acorn, Plugged into the Future\n\nScroll to Inspect Our Closed Deals\n";
+    let r = globalThis.__SHADER_HOME_CONTENT__,
+      t =
+        r?.hero?.title && r?.hero?.subtitle
+          ? `# ${r.hero.title}\n\n${r.hero.subtitle}\n`
+          : "# A Creative Development Studio, Plugged into the Future\n\nScroll to Inspect Our Closed Deals\n";
     var n = e.i(44664);
-    let r = {
+    let i = {
       title: (0, n.getTitle)(t),
       subtitle: (0, n.getParagraphsText)(t),
       markdown: t,
     };
-    e.s(["heroMd", 0, r], 34231);
+    e.s(["heroMd", 0, i], 34231);
   },
   85389,
   (e) => {
