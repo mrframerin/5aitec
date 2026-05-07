@@ -5,6 +5,13 @@ type A11yContentProps = {
 };
 
 export function A11yContent({ content }: A11yContentProps) {
+  const aboutParagraphs = [
+    ...content.about.intro.columns,
+    ...content.about.whatWeBuild.paragraphs,
+    content.about.clients.paragraph,
+    content.about.serious.paragraph,
+  ];
+
   return (
     <div id="json-content-layer">
       <button type="button" className="a11y-skip-to-content">
@@ -72,7 +79,7 @@ export function A11yContent({ content }: A11yContentProps) {
 
       <section aria-label="About Us" className="a11y-hidden" id="about-us">
         <h2>{content.about.title}</h2>
-        {content.about.paragraphs.map((paragraph) => (
+        {aboutParagraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
         <a

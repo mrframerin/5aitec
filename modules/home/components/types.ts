@@ -14,10 +14,12 @@ export type HomeContent = {
   hero: {
     title: string;
     subtitle: string;
+    assets?: Record<string, string>;
   };
   projects: {
     title: string;
     description: string;
+    assets?: Record<string, string>;
     items: Array<{
       uid: string;
       url: string;
@@ -29,9 +31,51 @@ export type HomeContent = {
   };
   about: {
     title: string;
-    paragraphs: string[];
+    intro: {
+      sceneTitle: string;
+      title: string;
+      columns: string[];
+      image: string;
+    };
+    whatWeBuild: {
+      title: string;
+      paragraphs: string[];
+    };
+    clients: {
+      title: string;
+      paragraph: string;
+      images: Record<string, string>;
+      logoCloud: {
+        image: string;
+        logos: string[];
+      };
+    };
+    serious: {
+      title: string;
+      paragraph: string;
+    };
+    shredder: {
+      title: string;
+      image: string;
+      model: string;
+    };
+    business: {
+      title: string;
+      subtitle: string;
+    };
+    goldenTie: {
+      title: string;
+      subtitle: string;
+      model: string;
+    };
     bookCallLabel: string;
   };
+  office?: { assets?: Record<string, string> };
+  contactScene?: { assets?: Record<string, string> };
+  bankScene?: { assets?: Record<string, string> };
+  footer?: { images?: Record<string, string> };
+  accessibility?: { images?: Record<string, string> };
+  sharedAssets?: { images?: Record<string, string> };
   contact: {
     title: string;
     intro: string;

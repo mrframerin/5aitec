@@ -4953,11 +4953,11 @@
   (e) => {
     "use strict";
     let g = globalThis.__SHADER_HOME_CONTENT__,
-      m = g?.about?.paragraphs ?? [],
-      y = g ? `# ${g.about.title}\n\n${m.slice(0, 2).join("\n\n")}\n` : null,
-      b = g ? `# What We Build\n\n${m.slice(3, 5).join("\n\n")}\n` : null,
-      x = g ? `# Clients and Results\n\n${m.slice(5, 6).join("\n\n")}\n` : null,
-      E = g ? `# Serious About the Future\n\n${m.slice(6, 7).join("\n\n")}\n` : null,
+      m = g?.about,
+      y = g ? `# ${m?.intro?.title ?? m?.title}\n\n${(m?.intro?.columns ?? []).join("\n\n")}\n` : null,
+      b = g ? `# ${m?.whatWeBuild?.title ?? "What We Build"}\n\n${(m?.whatWeBuild?.paragraphs ?? []).join("\n\n")}\n` : null,
+      x = g ? `# ${m?.clients?.title ?? "Clients and Results"}\n\n${m?.clients?.paragraph ?? ""}\n` : null,
+      E = g ? `# ${m?.serious?.title ?? "Serious About the Future"}\n\n${m?.serious?.paragraph ?? ""}\n` : null,
       v = g ? `# ${g.contact.title}\n\n${g.contact.intro}\n` : null,
       t =
         g

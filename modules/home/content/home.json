@@ -14,12 +14,20 @@
     { "label": "Contact", "href": "#contact" }
   ],
   "hero": {
-    "title": "A Creative Development Studio, Plugged into the Future",
-    "subtitle": "Scroll to Inspect Our Closed Deals"
+    "title": "Sai. A scratch chasing the acorn. Builder & investor in deep-tech",
+    "subtitle": "Scroll to Inspect Our Closed Deals",
+    "assets": {
+      "computerModel": "/models/computer.glb",
+      "bootScreen": "/textures/boot_screen.png",
+      "bootScreenMobile": "/textures/boot_screen_mobile.png"
+    }
   },
   "projects": {
     "title": "Selected Work",
     "description": "Browse our project carousel to explore our selected work.",
+    "assets": {
+      "thumbnailFallback": "/textures/thumb_fallback.png"
+    },
     "items": [
       {
         "uid": "ehealth-arena",
@@ -112,19 +120,104 @@
     ]
   },
   "about": {
-    "title": "Making Digital Storytelling More Playful, Powerful, and Alive",
-    "paragraphs": [
-      "Shader is a creative development studio specialized in building interactive 3D and AI solutions for the web. Serious about business, based in Sweden, and working with brands, agencies and designers worldwide.",
-      "Plugged into the future. While we're a small team of creative engineers, we have a hand-picked network of collaborators: designers, 3D artists, copywriters, animators, and creative technologists, ready to plug in with an array of capabilities.",
-      "This modular approach means we can scale and adapt to each challenge. Whether it's a WebGL experiment, an interactive product visualization, a mobile app, or an AI-driven experience, we help bold brands stand out across every screen.",
-      "We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it. Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.",
-      "Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation. We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed. We're not your regular IT department. We don't troubleshoot printers.",
-      "We have had the benefit of working with a large pool of great clients throughout the years. Our partnerships ranges from some of the most recognizable Swedish brands to international innovators.",
-      "In today's fast-paced corporate landscape, you need a partner who understands the bottom line. At Shader, we engineer success through strategic alliances and mutual profitability. Our team is ready to synergize with your organization, unlock new verticals, and maximize your digital ROI. We don't just close deals; we deliver results that compound.",
-      "We leverage state-of-the-art technology to give your brand a decisive competitive advantage. Whether disrupting the market with paradigm-shifting 3D experiences or streamlining operations with cutting-edge AI, we provide turnkey solutions that scale. We merge high-performance engineering with executive-level design to build assets that appreciate your brand value.",
-      "Ready to take your enterprise to the next level? Don't waste valuable time. Review our portfolio, crunch the numbers, and you'll see the trajectory points one way: up. Pick up the phone, send a fax, or schedule a consultation. The future of your business is waiting. Let's execute."
-    ],
+    "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+    "intro": {
+      "sceneTitle": "About Sai",
+      "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+      "columns": [
+        "i've got about 10 years of staying in the game. building early-stage startups. making things that are worth making. stanford gsb, 2025. est. 2015.",
+        "mildly opinionated about most things. moderately opinionated about Spatial Computing. deeply opinionated about dosas. founded 15 ventures. one exit to walmart.",
+        "i build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques — zero to one, hands in the code."
+      ],
+      "image": "/textures/jake_computer.webp"
+    },
+    "whatWeBuild": {
+      "title": "What We Build",
+      "paragraphs": [
+        "We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it. Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.",
+        "Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation. We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed. We're not your regular IT department. We don't troubleshoot printers."
+      ]
+    },
+    "clients": {
+      "title": "Clients and Results",
+      "paragraph": "We have had the benefit of working with a large pool of great clients throughout the years. Our partnerships ranges from some of the most recognizable Swedish brands to international innovators.",
+      "images": {
+        "leftPerson": "/textures/jacob_presenting.webp",
+        "rightPerson": "/textures/simon_presenting.webp"
+      },
+      "logoCloud": {
+        "image": "/textures/customers_logo_cloud.png",
+        "logos": [
+          "ICA",
+          "Region Ostergotland",
+          "Pepsi",
+          "RISE",
+          "SPP",
+          "Suicide Zero",
+          "Scandic",
+          "Cloetta",
+          "SON",
+          "Universeum",
+          "Stadium",
+          "Garageport Experten"
+        ]
+      }
+    },
+    "serious": {
+      "title": "Serious About the Future",
+      "paragraph": "In today's fast-paced corporate landscape, you need a partner who understands the bottom line. At Shader, we engineer success through strategic alliances and mutual profitability. Our team is ready to synergize with your organization, unlock new verticals, and maximize your digital ROI. We don't just close deals; we deliver results that compound."
+    },
+    "shredder": {
+      "title": "Had Enough Reading? Let's Shred This Thing.",
+      "image": "/textures/filip_footer_5.webp",
+      "model": "/models/shredder.glb"
+    },
+    "business": {
+      "title": "Still Not Convinced We're Serious About Business?",
+      "subtitle": "We've got one last trick up our sleeve."
+    },
+    "goldenTie": {
+      "title": "Check Out This Golden Tie",
+      "subtitle": "You made it this far. You deserve a tie-break.",
+      "model": "/models/tie.glb"
+    },
     "bookCallLabel": "Book a Call Today"
+  },
+  "office": {
+    "assets": {
+      "deskboxModel": "/models/deskbox.glb"
+    }
+  },
+  "contactScene": {
+    "assets": {
+      "phonesModel": "/models/phones.glb",
+      "dirtTexture": "/textures/dirt.jpg"
+    }
+  },
+  "bankScene": {
+    "assets": {
+      "bankModel": "/models/bank.glb",
+      "wallTexture": "/textures/bank_wall.webp",
+      "scratchesTexture": "/textures/bank_scratches.webp",
+      "metalTexture": "/textures/bank_metal.webp"
+    }
+  },
+  "footer": {
+    "images": {
+      "footerCertificate": "/textures/footer_certificate.png",
+      "copyrightFooter": "/textures/copyright_footer.png"
+    }
+  },
+  "accessibility": {
+    "images": {
+      "hero": "/textures/accessibility_statement.webp",
+      "card": "/textures/a11y-statement.png"
+    }
+  },
+  "sharedAssets": {
+    "images": {
+      "smoke": "/textures/smoke.png"
+    }
   },
   "contact": {
     "title": "Contact",
