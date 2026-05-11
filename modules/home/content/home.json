@@ -19,7 +19,9 @@
     "assets": {
       "computerModel": "/models/computer.glb",
       "bootScreen": "/textures/boot_screen.png",
-      "bootScreenMobile": "/textures/boot_screen_mobile.png"
+      "bootScreenMobile": "/textures/boot_screen_mobile.png",
+      "computerVideoManifest": "/videos/prebaked/handshake_avif/handshake.manifest.json",
+      "computerVideoManifestMobile": "/videos/prebaked/handshake_avif_mobile/handshake.manifest.json"
     }
   },
   "projects": {
@@ -127,7 +129,7 @@
       "columns": [
         "I've got about 10 years of staying in the game. building early-stage startups. making things that are worth making. stanford gsb, 2025. est. 2015.",
         "Mildly opinionated about most things. moderately opinionated about Spatial Computing. deeply opinionated about dosas. founded 15 ventures. one exit to walmart.",
-        "I build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques — zero to one, hands in the code."
+        "I build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques - zero to one, hands in the code."
       ],
       "image": "/textures/jake_computer.webp"
     },
