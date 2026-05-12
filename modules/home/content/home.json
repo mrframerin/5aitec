@@ -9,7 +9,7 @@
   },
   "navigation": [
     { "label": "Home", "href": "#hero" },
-    { "label": "Work", "href": "#projects" },
+    { "label": "Work", "href": "#selected-work" },
     { "label": "About", "href": "#about-us" },
     { "label": "Connect", "href": "#contact" }
   ],
@@ -228,6 +228,10 @@
     "email": "hello@5aitec.com",
     "ceoEmail": "hello@5aitec.com",
     "bookCallUrl": "https://cal.com/5aitec/30min",
+    "newBusiness": {
+      "title": "Say hi",
+      "body": "I invest in things and friends I know. Submit a pitch. I'm one email away, hello@5aitec.com"
+    },
     "address": {
       "street": "HSR Layout",
       "postalCode": "560 102",

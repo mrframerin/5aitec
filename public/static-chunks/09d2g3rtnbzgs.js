@@ -4887,6 +4887,15 @@
           "https://www.instagram.com/shadersweden/",
         twitter: h?.contact?.social?.twitter ?? "https://x.com/shadersweden",
       },
+      "newBusiness",
+      0,
+      {
+        title: h?.contact?.newBusiness?.title ?? "Say Hi",
+        body: h?.contact?.newBusiness?.body,
+        intro:
+          h?.contact?.newBusiness?.intro ??
+          "I invest in things and friends I know. Submit a pitch. I'm one email away, ",
+      },
     ]);
   },
   72219,

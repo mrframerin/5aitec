@@ -147,13 +147,14 @@ export function A11yContent({ content }: A11yContentProps) {
           </a>
         </fieldset>
         <fieldset>
-          <legend>New business</legend>
+          <legend>Say Hi</legend>
+          <p>I invest in things and friends I know. Submit a pitch.</p>
           <p>
             <a
               aria-label={`Send email to ${content.contact.ceoEmail}`}
               href={`mailto:${content.contact.ceoEmail}`}
             >
-              Reach out today to our CEO for new business enquiries at{" "}
+              I'm one email away,{" "}
               {content.contact.ceoEmail}
             </a>
           </p>

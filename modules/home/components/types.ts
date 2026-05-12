@@ -66,6 +66,7 @@ export type HomeContent = {
     goldenTie: {
       title: string;
       subtitle: string;
+      awards: string;
       model: string;
     };
     bookCallLabel: string;
