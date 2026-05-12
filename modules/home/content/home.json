@@ -180,7 +180,8 @@
     },
     "goldenTie": {
       "title": "Check Out This Golden Tie",
-      "subtitle": "You made it this far. You deserve a tie-break.",
+      "subtitle": "You made it this far. Here's the paper trail.",
+      "awards": "Forbes 30 Under 30  —  BW Disrupt 40 Under 40  —  NASSCOM Emerge 50  —  YourStory Tech30  —  Economic Times Startup Award  —  AWE Auggies Winner",
       "model": "/models/tie.glb"
     },
     "bookCallLabel": "Book a Call Today"
