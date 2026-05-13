@@ -156,8 +156,8 @@
     "whatWeBuild": {
       "title": "What We Build",
       "paragraphs": [
-        "We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it. Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.",
-        "Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation. We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed. We're not your regular IT department. We don't troubleshoot printers."
+        "Sai builds and backs deep-tech products that move from idea to market. AI, spatial computing, AR commerce, and early-stage bets with real technical depth.",
+        "5AITEC works hands-on with founders: prototyping, product strategy, full-stack builds, and venture support. Short path from wild thought to working thing."
       ]
     },
     "clients": {
@@ -298,7 +298,7 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "Contact us about your digital project idea or general enquires. Let's interface, call us today!",
+    "intro": "Got a startup idea or a wild bet. Let's talk. I'm one email away.",
     "email": "hello@5aitec.com",
     "ceoEmail": "hello@5aitec.com",
     "bookCallUrl": "https://cal.com/5aitec/30min",
@@ -307,10 +307,10 @@
       "body": "I invest in things and friends I know. Submit a pitch. I'm one email away, hello@5aitec.com"
     },
     "address": {
-      "street": "HSR Layout",
-      "postalCode": "560 102",
-      "city": "Bangalore",
-      "country": "India",
+      "street": "Bangalore / Dubai / San Francisco",
+      "postalCode": "",
+      "city": "BLR / SFO / DXB",
+      "country": "",
       "countryCode": "IN"
     },
     "social": {
