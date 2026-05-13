@@ -161,7 +161,7 @@ export function A11yContent({ content }: A11yContentProps) {
         </fieldset>
         <fieldset>
           <legend>Footer</legend>
-          <a href="/accessibility-statement">Accessibility Statement</a>
+          <a href="https://www.linkedin.com/in/5aitec/">Accessibility Statement</a>
         </fieldset>
       </section>
     </div>
