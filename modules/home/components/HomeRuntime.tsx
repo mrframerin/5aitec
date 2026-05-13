@@ -65,6 +65,30 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
       .querySelectorAll(".anti-portfolio-home, #anti-portfolio-a11y")
       .forEach((node) => node.remove());
   };
+  const removeIfWorkDetail = () => {
+    if (!isWorkDetail()) return false;
+    removeAntiPortfolioSection();
+    return true;
+  };
+  const watchWorkDetailPath = () => {
+    const notifyPathChange = () => {
+      requestAnimationFrame(removeIfWorkDetail);
+      setTimeout(removeIfWorkDetail, 150);
+      setTimeout(removeIfWorkDetail, 600);
+    };
+    for (const method of ["pushState", "replaceState"]) {
+      const original = history[method];
+      history[method] = function patchedHistoryMethod() {
+        const result = original.apply(this, arguments);
+        notifyPathChange();
+        return result;
+      };
+    }
+    window.addEventListener("popstate", notifyPathChange);
+    window.addEventListener("hashchange", notifyPathChange);
+    notifyPathChange();
+  };
+  watchWorkDetailPath();
   const escapeHtml = (value) =>
     String(value ?? "")
       .replaceAll("&", "&amp;")
@@ -73,8 +97,7 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
       .replaceAll('"', "&quot;");
 
   const buildAntiPortfolioSection = () => {
-    if (isWorkDetail()) {
-      removeAntiPortfolioSection();
+    if (removeIfWorkDetail()) {
       return null;
     }
     const antiPortfolio = window.__SHADER_HOME_CONTENT__?.antiPortfolio;
@@ -118,8 +141,7 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
   };
 
   const mountAntiPortfolio = () => {
-    if (isWorkDetail()) {
-      removeAntiPortfolioSection();
+    if (removeIfWorkDetail()) {
       return false;
     }
     const section = buildAntiPortfolioSection();
@@ -136,8 +158,7 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
   let attempts = 0;
   const timer = window.setInterval(() => {
     attempts += 1;
-    if (isWorkDetail()) {
-      removeAntiPortfolioSection();
+    if (removeIfWorkDetail()) {
       window.clearInterval(timer);
       return;
     }
