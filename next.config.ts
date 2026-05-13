@@ -5,10 +5,6 @@ const config: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/mux-image/:path*",
-        destination: "https://www.shader.se/api/mux-image/:path*",
-      },
-      {
         source: "/_next/static/media/logo.0ctv.ko5~mr~7.svg",
         destination: "/textures/logo.0ctv.ko5~mr~7.svg",
       },

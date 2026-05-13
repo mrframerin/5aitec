@@ -1,18 +1,27 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
+import projectThumbnails from "../../../../../modules/home/content/project-thumbnails.json";
 
 type RouteContext = {
   params: Promise<{
     playbackId: string;
+    transform: string[];
   }>;
 };
+
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export async function GET(request: Request, context: RouteContext) {
   const { playbackId } = await context.params;
   const match = playbackId.match(/^local-project-(\d+)$/);
+  const localIndex =
+    projectThumbnails.playbackIdToIndex[
+      playbackId as keyof typeof projectThumbnails.playbackIdToIndex
+    ];
 
-  if (!match) {
+  if (!match && localIndex == null) {
     const sourceUrl = new URL(request.url);
     const remoteUrl = new URL(sourceUrl.pathname + sourceUrl.search, "https://www.shader.se");
     const response = await fetch(remoteUrl);
@@ -34,7 +43,7 @@ export async function GET(request: Request, context: RouteContext) {
     "public",
     "textures",
     "projects",
-    `project_thumb_${match[1]}.jpg`,
+    `project_thumb_${match?.[1] ?? localIndex}.jpg`,
   );
   const image = await readFile(imagePath);
 

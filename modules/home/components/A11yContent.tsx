@@ -92,6 +92,24 @@ export function A11yContent({ content }: A11yContentProps) {
         </a>
       </section>
 
+      {content.antiPortfolio ? (
+        <section
+          aria-label="Anti-Portfolio"
+          className="a11y-hidden"
+          id="anti-portfolio-a11y"
+        >
+          <h2>{content.antiPortfolio.title}</h2>
+          <p>{content.antiPortfolio.subline}</p>
+          <ul>
+            {content.antiPortfolio.items.map((item) => (
+              <li key={item.name}>
+                <strong>{item.name}</strong>: {item.oneLiner}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section aria-label="Contact" className="a11y-hidden" id="contact">
         <h2>{content.contact.title}</h2>
         <p>{content.contact.intro}</p>

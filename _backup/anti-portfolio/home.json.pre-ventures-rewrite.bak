@@ -1,0 +1,275 @@
+{
+  "document": {
+    "lang": "en",
+    "title": "Work By 5aitec",
+    "description": "Empowering Your Business with Next-Generation Interactive 3D and AI Solutions. Based in Sweden and Working with Brands and Agencies Worldwide.",
+    "icon": "/icon.svg",
+    "stylesheet": "/main.css",
+    "canonical": "https://5aitec.com"
+  },
+  "navigation": [
+    { "label": "Home", "href": "#hero" },
+    { "label": "Work", "href": "#selected-work" },
+    { "label": "About", "href": "#about-us" },
+    { "label": "Connect", "href": "#contact" }
+  ],
+  "hero": {
+    "title": "Sai. A scrat chasing the acorn. Builder, investor in deep-tech",
+    "subtitle": "Scroll to Inspect Our Closed Deals",
+    "assets": {
+      "computerModel": "/models/computer.glb",
+      "bootScreen": "/textures/boot_screen.png",
+      "bootScreenMobile": "/textures/boot_screen_mobile.png",
+      "computerVideoManifest": "/videos/prebaked/handshake_avif/handshake.manifest.json",
+      "computerVideoManifestMobile": "/videos/prebaked/handshake_avif_mobile/handshake.manifest.json"
+    }
+  },
+  "projects": {
+    "title": "Anti-Portfolio",
+    "description": "For a few things that work, many don't. The graveyard of attempts — failure is part of the process.",
+    "assets": {
+      "thumbnailFallback": "/textures/thumb_fallback.png"
+    },
+    "items": [
+      {
+        "uid": "ehealth-arena",
+        "url": "/work/ehealth-arena",
+        "title": "Vagabond",
+        "subtitle": "Nomad Social App",
+        "siteUrl": "https://www.ehealtharena.se/digitalt-showroom",
+        "description": "A roaming social app for people living out of a backpack. Nomads wanted better wifi, not another feed."
+      },
+      {
+        "uid": "select-concept",
+        "url": "/work/select-concept",
+        "title": "Beep Collective",
+        "subtitle": "Audio-First Network",
+        "siteUrl": "https://selectconcept.com/planner",
+        "description": "An audio-first social network. We made noise. The market made silence."
+      },
+      {
+        "uid": "gamily",
+        "url": "/work/gamily",
+        "title": "Grail",
+        "subtitle": "Collectibles Search",
+        "siteUrl": "https://gamilyapp.com/",
+        "description": "A search engine for collectibles. Found a lot of things. Never found a business model."
+      },
+      {
+        "uid": "alamance-foods",
+        "url": "/work/alamance-foods",
+        "title": "Culture Tools",
+        "subtitle": "Culture SaaS",
+        "siteUrl": "https://www.alamancefoods.com/brands/coffee-toppers",
+        "description": "SaaS for shaping company culture. Teams kept shaping it with free Notion pages instead."
+      },
+      {
+        "uid": "son",
+        "url": "/work/son",
+        "title": "Nada",
+        "subtitle": "AI Stem Isolator",
+        "siteUrl": "https://www.norrkopingssymfoniorkester.se/",
+        "description": "AI that isolated stems from any track for download. Worked great. The business model? Not so much."
+      },
+      {
+        "uid": "glasbolaget",
+        "url": "/work/glasbolaget",
+        "title": "Pixel",
+        "subtitle": "Home Automation",
+        "siteUrl": "https://glasbolaget-configurator.vercel.app/",
+        "description": "Home automation built around inexpensive switching systems and a hub called Rally. Right product. Wrong decade."
+      },
+      {
+        "uid": "spp-dream-generator",
+        "url": "/work/spp-dream-generator",
+        "title": "Augmented Shirts",
+        "subtitle": "AR Apparel",
+        "siteUrl": "https://retirement-dream-generator.se",
+        "description": "T-shirts that triggered AR animations when scanned. Compelling idea. Needed more marketing than tech."
+      },
+      {
+        "uid": "ica-nissen",
+        "url": "/work/ica-nissen",
+        "title": "RCB Cards",
+        "subtitle": "NFT Cricket Cards",
+        "siteUrl": "",
+        "description": "9,999 NFT cricket cards with AR effects. DOA thanks to cricket licensing complications."
+      },
+      {
+        "uid": "norrkopings-hamn",
+        "url": "/work/norrkopings-hamn",
+        "title": "Kooriee",
+        "subtitle": "Hyperlocal Logistics",
+        "siteUrl": "https://visual-of-sweden.vercel.app/hamnen",
+        "description": "Hyperlocal logistics for long-tail brands. Worked in one city. Unit economics refused to leave it."
+      },
+      {
+        "uid": "heip",
+        "url": "/work/heip",
+        "title": "Specto",
+        "subtitle": "Mobile VR Cases",
+        "siteUrl": "https://heip-vis.vercel.app/sv",
+        "description": "Cardboard-era VR cases for mobile phones. The industry moved to standalone before we could."
+      },
+      {
+        "uid": "design-is-funny",
+        "url": "/work/design-is-funny",
+        "title": "User Stories Comics",
+        "subtitle": "Accessible VR Comics",
+        "siteUrl": "https://www.designisfunny.co/",
+        "description": "A comic series about making accessible VR. Fun to make. Webcomic economics ate it alive."
+      }
+    ]
+  },
+  "about": {
+    "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+    "intro": {
+      "sceneTitle": "About Sai",
+      "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+      "columns": [
+        "I've got about 10 years of staying in the game. building early-stage startups. making things that are worth making. stanford gsb, 2025. est. 2015.",
+        "Mildly opinionated about most things. moderately opinionated about Spatial Computing. deeply opinionated about dosas. founded 15 ventures. one exit to walmart.",
+        "I build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques - zero to one, hands in the code."
+      ],
+      "image": "/textures/jake_computer.webp"
+    },
+    "whatWeBuild": {
+      "title": "What We Build",
+      "paragraphs": [
+        "We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it. Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.",
+        "Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation. We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed. We're not your regular IT department. We don't troubleshoot printers."
+      ]
+    },
+    "clients": {
+      "title": "Built and Backed",
+      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. exited Scapic to Walmart | Flipkart. backed by Binny Bansal.",
+      "images": {
+        "leftPerson": "/textures/transparent_1x1.png",
+        "rightPerson": "/textures/transparent_1x1.png"
+      },
+      "logoCloud": {
+        "image": "/textures/customers_logo_cloud.png",
+        "logos": [
+          "ICA",
+          "Region Ostergotland",
+          "Pepsi",
+          "RISE",
+          "SPP",
+          "Suicide Zero",
+          "Scandic",
+          "Cloetta",
+          "SON",
+          "Universeum",
+          "Stadium",
+          "Garageport Experten"
+        ]
+      }
+    },
+    "serious": {
+      "title": "For Founders Serious About the Future",
+      "paragraph": "Things that are worth making shape the future in positive ways. but getting these things out of the lab and into people's lives isn't easy.\n\nI build and invest in deep-tech. the wild bets. founded 15 ventures. exited one to walmart. not just writing cheques, zero to one, hands in the code.\n\nStanford gsb 2025. 10 years in the game. Submit a pitch. I invest in things and friends I know."
+    },
+    "shredder": {
+      "title": "Had Enough Reading? Let's Shred This Thing.",
+      "image": "/textures/filip_footer_5.webp",
+      "model": "/models/shredder.glb"
+    },
+    "business": {
+      "title": "Still Not Convinced We're Serious About Business?",
+      "subtitle": "We've got one last trick up our sleeve."
+    },
+    "goldenTie": {
+      "title": "Check Out This Golden Tie",
+      "subtitle": "You made it this far. Here's the paper trail.",
+      "awards": "Forbes 30 Under 30  —  BW Disrupt 40 Under 40  —  NASSCOM Emerge 50  —  YourStory Tech30  —  Economic Times Startup Award  —  AWE Auggies Winner",
+      "model": "/models/tie.glb"
+    },
+    "bookCallLabel": "Book a Call Today"
+  },
+  "antiPortfolio": {
+    "title": "Anti-Portfolio",
+    "subline": "For a few things that work, many don't. My list of attempts that went to the graveyard. Failure is part of the process.",
+    "items": [
+      { "name": "Vagabond", "oneLiner": "A roaming social app for people who lived out of a backpack. Turns out nomads don't want another app, they want better wifi." },
+      { "name": "Beep Collective", "oneLiner": "Audio-first social network. We made noise. The market made silence." },
+      { "name": "Grail", "oneLiner": "A search engine for collectibles. Found a lot of things. Not a business model." },
+      { "name": "Culture Tools", "oneLiner": "SaaS for shaping company culture. Companies preferred to keep shaping it with free Notion pages." },
+      { "name": "Nada", "oneLiner": "An AI platform that analysed a track and then isolated each stem to let you download the same. Worked great. The business model? Not so much." },
+      { "name": "Pixel", "oneLiner": "Home automation built around inexpensive switching systems and a hub called Rally. Beautiful hardware. Wrong decade." },
+      { "name": "Augmented Shirts", "oneLiner": "AR + physical T-shirts that triggered messages, animations, and more when you pointed your phone. Compelling idea. Needed more marketing than tech." },
+      { "name": "RCB Cards", "oneLiner": "9,999 NFT cricket cards with AR effects and utilities. DOA thanks to cricket licensing complications." },
+      { "name": "Kooriee", "oneLiner": "Hyperlocal logistics for long-tail brands. Worked in one city. Unit economics refused to leave it." },
+      { "name": "Specto", "oneLiner": "Cardboard-era VR cases for mobile phones. The industry moved on to standalone before we could." },
+      { "name": "User Stories Comics", "oneLiner": "A comic series about making accessible VR. Fun to make. Webcomic economics ate it alive." },
+      { "name": "Micro Dark Wares", "oneLiner": "Dark stores in Bangalore promising 10-minute delivery. Pandemic gave it life, normalcy took it back." }
+    ]
+  },
+  "office": {
+    "assets": {
+      "deskboxModel": "/models/deskbox.glb"
+    }
+  },
+  "contactScene": {
+    "assets": {
+      "phonesModel": "/models/phones.glb",
+      "dirtTexture": "/textures/dirt.jpg"
+    }
+  },
+  "bankScene": {
+    "assets": {
+      "bankModel": "/models/bank.glb",
+      "wallTexture": "/textures/bank_wall.webp",
+      "scratchesTexture": "/textures/bank_scratches.webp",
+      "metalTexture": "/textures/bank_metal.webp"
+    }
+  },
+  "footer": {
+    "images": {
+      "footerCertificate": "/textures/footer_certificate.png",
+      "copyrightFooter": "/textures/copyright_footer.png"
+    }
+  },
+  "accessibility": {
+    "images": {
+      "hero": "/textures/accessibility_statement.webp",
+      "card": "/textures/a11y-statement.png"
+    }
+  },
+  "sharedAssets": {
+    "images": {
+      "smoke": "/textures/smoke.png"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Contact us about your digital project idea or general enquires. Let's interface, call us today!",
+    "email": "hello@5aitec.com",
+    "ceoEmail": "hello@5aitec.com",
+    "bookCallUrl": "https://cal.com/5aitec/30min",
+    "newBusiness": {
+      "title": "Say hi",
+      "body": "I invest in things and friends I know. Submit a pitch. I'm one email away, hello@5aitec.com"
+    },
+    "address": {
+      "street": "HSR Layout",
+      "postalCode": "560 102",
+      "city": "Bangalore",
+      "country": "India",
+      "countryCode": "IN"
+    },
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/5aitec/",
+      "instagram": "https://www.instagram.com/5aitec/",
+      "twitter": "https://x.com/5aitec"
+    }
+  },
+  "schema": {
+    "organization": {
+      "name": "5aitec",
+      "legalName": "5aitec",
+      "taxID": "",
+      "url": "https://www.5aitec.com",
+      "email": "hello@5aitec.com"
+    }
+  }
+}

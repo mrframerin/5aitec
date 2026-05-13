@@ -71,6 +71,11 @@ export type HomeContent = {
     };
     bookCallLabel: string;
   };
+  antiPortfolio?: {
+    title: string;
+    subline: string;
+    items: { name: string; oneLiner: string }[];
+  };
   office?: { assets?: Record<string, string> };
   contactScene?: { assets?: Record<string, string> };
   bankScene?: { assets?: Record<string, string> };

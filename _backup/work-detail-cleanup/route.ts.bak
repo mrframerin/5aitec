@@ -1,0 +1,90 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { NextResponse } from "next/server";
+
+type RouteContext = {
+  params: Promise<{
+    uid: string;
+  }>;
+};
+
+const contentPath = path.join(
+  process.cwd(),
+  "modules",
+  "home",
+  "content",
+  "home.json",
+);
+
+async function loadHomeContent() {
+  return JSON.parse(await readFile(contentPath, "utf8"));
+}
+
+// Extract the RSC flight stream from a snapshot HTML file by walking
+// self.__next_f.push([1, "..."]) calls and concatenating their decoded payloads.
+function extractRscStream(html: string): string {
+  const pattern = /self\.__next_f\.push\(\[(\d+),([\s\S]*?)\]\)<\/script>/g;
+  const parts: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(html)) !== null) {
+    const chunkType = match[1];
+    if (chunkType !== "1") continue;
+    try {
+      const decoded = JSON.parse(match[2]);
+      if (typeof decoded === "string") parts.push(decoded);
+    } catch {
+      // skip malformed payloads
+    }
+  }
+  return parts.join("");
+}
+
+export async function GET(request: Request, context: RouteContext) {
+  const { uid } = await context.params;
+
+  const homeContent = await loadHomeContent();
+  const project = homeContent.projects.items.find(
+    (project: { uid: string }) => project.uid === uid,
+  );
+  if (!project) {
+    return NextResponse.json({ message: "Project not found" }, { status: 404 });
+  }
+
+  const templatePath = path.join(
+    process.cwd(),
+    "public",
+    "work",
+    uid,
+    "index.html",
+  );
+
+  let template: string;
+  try {
+    template = await readFile(templatePath, "utf8");
+  } catch {
+    return NextResponse.json(
+      { message: "Template not found for project" },
+      { status: 404 },
+    );
+  }
+
+  // RSC requests (Next.js client-side navigation) send RSC: 1 header.
+  // Return the extracted flight stream so the router can transition without a full reload.
+  const isRscRequest = request.headers.get("RSC") === "1";
+  if (isRscRequest) {
+    const rsc = extractRscStream(template);
+    return new NextResponse(rsc, {
+      headers: {
+        "content-type": "text/x-component",
+        "cache-control": "no-store, max-age=0",
+      },
+    });
+  }
+
+  return new NextResponse(template, {
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store, max-age=0",
+    },
+  });
+}

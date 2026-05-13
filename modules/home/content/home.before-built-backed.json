@@ -1,0 +1,257 @@
+{
+  "document": {
+    "lang": "en",
+    "title": "Work By 5aitec",
+    "description": "Empowering Your Business with Next-Generation Interactive 3D and AI Solutions. Based in Sweden and Working with Brands and Agencies Worldwide.",
+    "icon": "/icon.svg",
+    "stylesheet": "/main.css",
+    "canonical": "https://5aitec.com"
+  },
+  "navigation": [
+    { "label": "Home", "href": "#hero" },
+    { "label": "Work", "href": "#selected-work" },
+    { "label": "About", "href": "#about-us" },
+    { "label": "Connect", "href": "#contact" }
+  ],
+  "hero": {
+    "title": "Sai. A scrat chasing the acorn. Builder, investor in deep-tech",
+    "subtitle": "Scroll to Inspect Our Closed Deals",
+    "assets": {
+      "computerModel": "/models/computer.glb",
+      "bootScreen": "/textures/boot_screen.png",
+      "bootScreenMobile": "/textures/boot_screen_mobile.png",
+      "computerVideoManifest": "/videos/prebaked/handshake_avif/handshake.manifest.json",
+      "computerVideoManifestMobile": "/videos/prebaked/handshake_avif_mobile/handshake.manifest.json"
+    }
+  },
+  "projects": {
+    "title": "Selected Work",
+    "description": "Browse our project carousel to explore our selected work.",
+    "assets": {
+      "thumbnailFallback": "/textures/thumb_fallback.png"
+    },
+    "items": [
+      {
+        "uid": "ehealth-arena",
+        "url": "/work/ehealth-arena",
+        "title": "eHealth Arena",
+        "subtitle": "3D Showroom",
+        "siteUrl": "https://www.ehealtharena.se/digitalt-showroom",
+        "description": "We created an interactive 3D platform that explores how the latest e-health solutions work in practice. From the patient's home to hospital environments and care providers' workplaces. Users can follow real care journeys, and understand how it all connects to create safer, more efficient care."
+      },
+      {
+        "uid": "select-concept",
+        "url": "/work/select-concept",
+        "title": "Select Concept",
+        "subtitle": "3D Interior Designer",
+        "siteUrl": "https://selectconcept.com/planner",
+        "description": "Select Concept is a Swedish brand offering high-quality products for restaurants, hotels and cafes. We teamed up with them to conceptualize, design, and develop a user-friendly yet powerful 3D product planning tool, along with a new website."
+      },
+      {
+        "uid": "gamily",
+        "url": "/work/gamily",
+        "title": "Gamily",
+        "subtitle": "Campaign Website",
+        "siteUrl": "https://gamilyapp.com/",
+        "description": "Gamily is the dating and friend app designed for gamers who are looking for meaningful relationships with fellow gamers."
+      },
+      {
+        "uid": "alamance-foods",
+        "url": "/work/alamance-foods",
+        "title": "Alamance Foods",
+        "subtitle": "Website",
+        "siteUrl": "https://www.alamancefoods.com/brands/coffee-toppers",
+        "description": "Alamance Foods make fun foods. We made their web page using creative design ideas complemented with their products in 3D."
+      },
+      {
+        "uid": "son",
+        "url": "/work/son",
+        "title": "Norrkopings Symfoniorkester",
+        "subtitle": "Website",
+        "siteUrl": "https://www.norrkopingssymfoniorkester.se/",
+        "description": "We manage the entire web platform for Scenkonst Ost where Norrkoping Symphony Orchestra is a part. The audience can browse concerts, book tickets, buy gift cards and much more."
+      },
+      {
+        "uid": "glasbolaget",
+        "url": "/work/glasbolaget",
+        "title": "Glasbolaget",
+        "subtitle": "3D Configurator",
+        "siteUrl": "https://glasbolaget-configurator.vercel.app/",
+        "description": "We made a configurator for a company that sells glass in different forms. The user can create their own glass rails, walls and separate pieces using our 3D configurator. The prices are being fetched from an API so that we can calculate the total cost as the user designs."
+      },
+      {
+        "uid": "spp-dream-generator",
+        "url": "/work/spp-dream-generator",
+        "title": "SPP Dream Generator",
+        "subtitle": "AI Image and Video Generator",
+        "siteUrl": "https://retirement-dream-generator.se",
+        "description": "What was supposed to be a one shot PR event became a lasting piece of the SPP website. The visitor takes a photo of him/herself and writes a short description of what the days would look like when retired from work."
+      },
+      {
+        "uid": "ica-nissen",
+        "url": "/work/ica-nissen",
+        "title": "ICA-nissen",
+        "subtitle": "AR Game",
+        "siteUrl": "",
+        "description": "ICA is one of Sweden's largest grocery stores. For Christmas 2024 we made an AR game for them where users could scan ICA's products and unlock features in the game."
+      },
+      {
+        "uid": "norrkopings-hamn",
+        "url": "/work/norrkopings-hamn",
+        "title": "Norrkopings Hamn",
+        "subtitle": "3D Flow Visualization",
+        "siteUrl": "https://visual-of-sweden.vercel.app/hamnen",
+        "description": "We created a real-time 3D visual experience detailing the physical journey and logistics of two shipping containers. The objective of this application was to provide users with a detailed and engaging insight into the complex operations conducted at the docks of Norrkoping."
+      },
+      {
+        "uid": "heip",
+        "url": "/work/heip",
+        "title": "HEIP",
+        "subtitle": "3D Visualisation",
+        "siteUrl": "https://heip-vis.vercel.app/sv",
+        "description": "This visualization was created for Handelo Eco-Industrial Park and shows how different factories and units exchange by-products, reducing waste and maximizing overall efficiency."
+      },
+      {
+        "uid": "design-is-funny",
+        "url": "/work/design-is-funny",
+        "title": "Design is Funny",
+        "subtitle": "Portfolio",
+        "siteUrl": "https://www.designisfunny.co/",
+        "description": "Funny is the design work of Daniele Buffa, a Roman designer now based in London, UK. Buffa from the Italian means funny, comic, or droll."
+      }
+    ]
+  },
+  "about": {
+    "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+    "intro": {
+      "sceneTitle": "About Sai",
+      "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+      "columns": [
+        "I've got about 10 years of staying in the game. building early-stage startups. making things that are worth making. stanford gsb, 2025. est. 2015.",
+        "Mildly opinionated about most things. moderately opinionated about Spatial Computing. deeply opinionated about dosas. founded 15 ventures. one exit to walmart.",
+        "I build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques - zero to one, hands in the code."
+      ],
+      "image": "/textures/jake_computer.webp"
+    },
+    "whatWeBuild": {
+      "title": "What We Build",
+      "paragraphs": [
+        "We build storytelling platforms that demand attention and reward curiosity. We push digital mediums to places you haven't seen before, and have fun doing it. Beyond code, we offer 3D design and animation, UI and motion design, concepts and digital strategy, full-stack development, and creative consulting.",
+        "Whether it's prototyping an idea, launching an augmented reality experience, or bringing high-fidelity visuals to life, Shader bridges the gap between creative ambition and technical execution. Our process is hands-on, collaborative, and tailored for teams that value both craft and innovation. We combine technical expertise with a designer's eye, ensuring that every interaction feels natural and every pixel is perfectly placed. We're not your regular IT department. We don't troubleshoot printers."
+      ]
+    },
+    "clients": {
+      "title": "Built and Backed",
+      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. exited Scapic to Walmart | Flipkart. backed by Binny Bansal.",
+      "images": {
+        "leftPerson": "/textures/transparent_1x1.png",
+        "rightPerson": "/textures/transparent_1x1.png"
+      },
+      "logoCloud": {
+        "image": "/textures/customers_logo_cloud.png",
+        "logos": [
+          "ICA",
+          "Region Ostergotland",
+          "Pepsi",
+          "RISE",
+          "SPP",
+          "Suicide Zero",
+          "Scandic",
+          "Cloetta",
+          "SON",
+          "Universeum",
+          "Stadium",
+          "Garageport Experten"
+        ]
+      }
+    },
+    "serious": {
+      "title": "For Founders Serious About the Future",
+      "paragraph": "Things that are worth making shape the future in positive ways. but getting these things out of the lab and into people's lives isn't easy.\n\nI build and invest in deep-tech. the wild bets. founded 15 ventures. exited one to walmart. not just writing cheques, zero to one, hands in the code.\n\nStanford gsb 2025. 10 years in the game. Submit a pitch. I invest in things and friends I know."
+    },
+    "shredder": {
+      "title": "Had Enough Reading? Let's Shred This Thing.",
+      "image": "/textures/filip_footer_5.webp",
+      "model": "/models/shredder.glb"
+    },
+    "business": {
+      "title": "Still Not Convinced We're Serious About Business?",
+      "subtitle": "We've got one last trick up our sleeve."
+    },
+    "goldenTie": {
+      "title": "Check Out This Golden Tie",
+      "subtitle": "You made it this far. Here's the paper trail.",
+      "awards": "Forbes 30 Under 30  —  BW Disrupt 40 Under 40  —  NASSCOM Emerge 50  —  YourStory Tech30  —  Economic Times Startup Award  —  AWE Auggies Winner",
+      "model": "/models/tie.glb"
+    },
+    "bookCallLabel": "Book a Call Today"
+  },
+  "office": {
+    "assets": {
+      "deskboxModel": "/models/deskbox.glb"
+    }
+  },
+  "contactScene": {
+    "assets": {
+      "phonesModel": "/models/phones.glb",
+      "dirtTexture": "/textures/dirt.jpg"
+    }
+  },
+  "bankScene": {
+    "assets": {
+      "bankModel": "/models/bank.glb",
+      "wallTexture": "/textures/bank_wall.webp",
+      "scratchesTexture": "/textures/bank_scratches.webp",
+      "metalTexture": "/textures/bank_metal.webp"
+    }
+  },
+  "footer": {
+    "images": {
+      "footerCertificate": "/textures/footer_certificate.png",
+      "copyrightFooter": "/textures/copyright_footer.png"
+    }
+  },
+  "accessibility": {
+    "images": {
+      "hero": "/textures/accessibility_statement.webp",
+      "card": "/textures/a11y-statement.png"
+    }
+  },
+  "sharedAssets": {
+    "images": {
+      "smoke": "/textures/smoke.png"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Contact us about your digital project idea or general enquires. Let's interface, call us today!",
+    "email": "hello@5aitec.com",
+    "ceoEmail": "hello@5aitec.com",
+    "bookCallUrl": "https://cal.com/5aitec/30min",
+    "newBusiness": {
+      "title": "Say hi",
+      "body": "I invest in things and friends I know. Submit a pitch. I'm one email away, hello@5aitec.com"
+    },
+    "address": {
+      "street": "HSR Layout",
+      "postalCode": "560 102",
+      "city": "Bangalore",
+      "country": "India",
+      "countryCode": "IN"
+    },
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/5aitec/",
+      "instagram": "https://www.instagram.com/5aitec/",
+      "twitter": "https://x.com/5aitec"
+    }
+  },
+  "schema": {
+    "organization": {
+      "name": "5aitec",
+      "legalName": "5aitec",
+      "taxID": "",
+      "url": "https://www.5aitec.com",
+      "email": "hello@5aitec.com"
+    }
+  }
+}
