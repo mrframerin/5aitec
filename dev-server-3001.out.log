@@ -1,6 +1,65 @@
-   ▲ Next.js 15.5.18
+
+> shader-se@0.1.0 dev
+> next dev -p 3001
+
+   ▲ Next.js 15.5.15
    - Local:        http://localhost:3001
-   - Network:      http://10.126.33.7:3001
+   - Network:      http://192.168.56.1:3001
 
  ✓ Starting...
- ✓ Ready in 1670ms
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 1256ms (527 modules)
+ GET / 200 in 2107ms
+ GET / 200 in 274ms
+ ✓ Compiled /middleware in 313ms (114 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 922ms (532 modules)
+ GET /_next/static/chunks/webpack.js?v=1779185892187 404 in 1376ms
+ GET /_next/static/chunks/main-app.js?v=1779185892187 404 in 660ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 115ms
+ GET /app-pages-internals.js 404 in 150ms
+ GET /static/chunks/app-pages-internals.js 404 in 143ms
+ GET /_next/static/chunks/webpack.js?v=1779185903497 404 in 148ms
+ GET /_next/static/chunks/main-app.js?v=1779185903497 404 in 147ms
+ GET / 200 in 367ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 154ms
+ GET /app-pages-internals.js 404 in 211ms
+ GET /static/chunks/app-pages-internals.js 404 in 193ms
+ GET /?hero-lines=1779186248930 200 in 476ms
+ GET /_next/static/chunks/main-app.js?v=1779186249188 404 in 217ms
+ GET /_next/static/chunks/webpack.js?v=1779186249188 404 in 250ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 58ms
+ GET /app-pages-internals.js 404 in 178ms
+ GET /static/chunks/app-pages-internals.js 404 in 159ms
+ GET /?hero-lines=1779186260462 200 in 139ms
+ GET /_next/static/chunks/webpack.js?v=1779186260509 404 in 145ms
+ GET /_next/static/chunks/main-app.js?v=1779186260509 404 in 145ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 97ms
+ GET /app-pages-internals.js 404 in 179ms
+ GET /static/chunks/app-pages-internals.js 404 in 168ms
+ GET /?hero-lines=1779186330826 200 in 258ms
+ GET /_next/static/chunks/webpack.js?v=1779186330926 404 in 143ms
+ GET /_next/static/chunks/main-app.js?v=1779186330926 404 in 142ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 106ms
+ GET /app-pages-internals.js 404 in 206ms
+ GET /static/chunks/app-pages-internals.js 404 in 197ms
+ GET /?hero-lines=1779186330826 200 in 122ms
+ GET /_next/static/chunks/webpack.js?v=1779186354195 404 in 166ms
+ GET /_next/static/chunks/main-app.js?v=1779186354195 404 in 164ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 102ms
+ GET /app-pages-internals.js 404 in 166ms
+ GET /static/chunks/app-pages-internals.js 404 in 161ms
+ GET /?align=1779188786691 200 in 1304ms
+ GET /_next/static/chunks/main-app.js?v=1779188787530 404 in 209ms
+ GET /_next/static/chunks/webpack.js?v=1779188787530 404 in 205ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 213ms
+ GET /app-pages-internals.js 404 in 244ms
+ GET /static/chunks/app-pages-internals.js 404 in 215ms
+ GET /?align=1779188786691 200 in 126ms
+ GET /_next/static/chunks/main-app.js?v=1779188812026 404 in 160ms
+ GET /_next/static/chunks/webpack.js?v=1779188812026 404 in 164ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 86ms
+ GET /app-pages-internals.js 404 in 138ms
+ GET /static/chunks/app-pages-internals.js 404 in 134ms
+ ✓ Compiled in 1157ms

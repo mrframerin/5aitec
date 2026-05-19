@@ -1,7 +1,7 @@
 {
   "document": {
     "lang": "en",
-    "title": "Work By 5aitec",
+    "title": "Saitec - 2026",
     "description": "Empowering Your Business with Next-Generation Interactive 3D and AI Solutions. Based in Sweden and Working with Brands and Agencies Worldwide.",
     "icon": "/icon.svg",
     "stylesheet": "/main.css",
@@ -13,7 +13,7 @@
       "href": "#hero"
     },
     {
-      "label": "Work",
+      "label": "Startups",
       "href": "#selected-work"
     },
     {
@@ -26,8 +26,8 @@
     }
   ],
   "hero": {
-    "title": "Sai. A scrat chasing the acorn. Builder, investor in deep-tech",
-    "subtitle": "Scroll to Inspect Our Closed Deals",
+    "title": "Hi, I'm Sai.\nA bit of a Scrat\nchasing the acorn.",
+    "subtitle": "This is my digital playground.",
     "assets": {
       "computerModel": "/models/computer.glb",
       "bootScreen": "/textures/boot_screen.png",
@@ -266,6 +266,7 @@
     }
   },
   "contactScene": {
+    "heading": "“Vanakkam”",
     "assets": {
       "phonesModel": "/models/phones.glb",
       "dirtTexture": "/textures/dirt.jpg"
@@ -293,7 +294,7 @@
   },
   "sharedAssets": {
     "images": {
-      "smoke": "/textures/smoke.png"
+      "smoke": "/textures/transparent_1x1.png"
     }
   },
   "contact": {

@@ -77,7 +77,7 @@ export type HomeContent = {
     items: { name: string; oneLiner: string }[];
   };
   office?: { assets?: Record<string, string> };
-  contactScene?: { assets?: Record<string, string> };
+  contactScene?: { assets?: Record<string, string>; heading?: string };
   bankScene?: { assets?: Record<string, string> };
   footer?: { images?: Record<string, string> };
   accessibility?: { images?: Record<string, string> };
