@@ -52,92 +52,12 @@
         "description": "Owning AI outcomes for brands — and building them agents and coworkers to get it done. Backed by Binny Bansal."
       },
       {
-        "uid": "shopos",
-        "url": "/work/shopos",
-        "title": "ShopOS",
-        "subtitle": "AI Agent OS · Active",
-        "siteUrl": "https://shopos.ai",
-        "description": "Owning AI outcomes for brands — and building them agents and coworkers to get it done. Backed by Binny Bansal."
-      },
-      {
         "uid": "seeit",
         "url": "/work/seeit",
         "title": "SeeIt",
         "subtitle": "AI Smart Glasses · IRIS Labs",
         "siteUrl": "https://selectconcept.com/planner",
         "description": "Open-source AI smart glasses. On-device memory. Built in public."
-      },
-      {
-        "uid": "spuddish",
-        "url": "/work/spuddish",
-        "title": "Spuddish",
-        "subtitle": "Venture Fund · Active",
-        "siteUrl": "https://gamilyapp.com/",
-        "description": "Early-stage bets on the future of the web. Personal fund, hands-on, not a passive LP check."
-      },
-      {
-        "uid": "omvara",
-        "url": "/work/omvara",
-        "title": "Omvara",
-        "subtitle": "Luxury Fragrance · Active",
-        "siteUrl": "https://www.alamancefoods.com/brands/coffee-toppers",
-        "description": "Intentional fragrance. Built for stillness."
-      },
-      {
-        "uid": "scapic",
-        "url": "/work/scapic",
-        "title": "Scapic",
-        "subtitle": "No-code Metaverse · Exit to Walmart",
-        "siteUrl": "https://www.norrkopingssymfoniorkester.se/",
-        "description": "The world's first no-code Metaverse platform. 300,000+ experiences. Acquired by Walmart | Flipkart."
-      },
-      {
-        "uid": "flipkart-camera",
-        "url": "/work/flipkart-camera",
-        "title": "Flipkart Camera",
-        "subtitle": "AR Commerce",
-        "siteUrl": "https://glasbolaget-configurator.vercel.app/",
-        "description": "World's largest AR commerce surface. Tens of millions of Indians visualizing products before buying."
-      },
-      {
-        "uid": "house-of-models",
-        "url": "/work/house-of-models",
-        "title": "House of Models",
-        "subtitle": "AI Agent OS for Brand Commerce",
-        "siteUrl": "https://retirement-dream-generator.se",
-        "description": "AI agent OS purpose-built for brand commerce workflows."
-      },
-      {
-        "uid": "gibbon",
-        "url": "/work/gibbon",
-        "title": "Gibbon",
-        "subtitle": "Vision Pro · Spatial Presentations",
-        "siteUrl": "",
-        "description": "Spatial presentations built for Vision Pro."
-      },
-      {
-        "uid": "flipkart-labs",
-        "url": "/work/flipkart-labs",
-        "title": "Flipkart Labs",
-        "subtitle": "Moonshots · Drones, AI, EVs",
-        "siteUrl": "https://visual-of-sweden.vercel.app/hamnen",
-        "description": "Drones, AI, EVs — Flipkart's moonshot R&D arm."
-      },
-      {
-        "uid": "cope-studio",
-        "url": "/work/cope-studio",
-        "title": "Cope Studio",
-        "subtitle": "Web3 Design + Capital",
-        "siteUrl": "https://heip-vis.vercel.app/sv",
-        "description": "Web3 design studio with venture capital baked in."
-      },
-      {
-        "uid": "dehidden",
-        "url": "/work/dehidden",
-        "title": "Dehidden",
-        "subtitle": "NFT Utility App Store",
-        "siteUrl": "https://www.designisfunny.co/",
-        "description": "An app store for NFT utility."
       }
     ]
   },
