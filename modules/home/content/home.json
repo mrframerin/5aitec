@@ -47,7 +47,7 @@
         "uid": "shopos",
         "url": "/work/shopos",
         "title": "ShopOS",
-        "subtitle": "AI Agent OS · Active",
+        "subtitle": "Commerce AI • Active • 2025",
         "siteUrl": "https://shopos.ai",
         "description": "Owning AI outcomes for brands — and building them agents and coworkers to get it done. Backed by Binny Bansal."
       },
@@ -55,7 +55,7 @@
         "uid": "seeit",
         "url": "/work/seeit",
         "title": "SeeIt",
-        "subtitle": "AI Smart Glasses · IRIS Labs",
+        "subtitle": "Deep Tech • Research Lab • 2025",
         "siteUrl": "https://selectconcept.com/planner",
         "description": "Open-source AI smart glasses. On-device memory. Built in public."
       }
@@ -115,14 +115,14 @@
       "model": "/models/shredder.glb"
     },
     "business": {
-      "title": "Still Not Convinced We're Serious About Business?",
-      "subtitle": "We've got one last trick up our sleeve."
+      "title": "Lot's done, lots more to do",
+      "subtitle": "The first decade was a warm-up"
     },
     "goldenTie": {
-      "title": "Check Out This Golden Tie",
-      "subtitle": "You made it this far. Here's the paper trail.",
+      "title": "Check Out This Golden Acorn",
+      "subtitle": "You made it this far. Here's the haul.",
       "awards": "Forbes 30 Under 30  —  BW Disrupt 40 Under 40  —  NASSCOM Emerge 50  —  YourStory Tech30  —  Economic Times Startup Award  —  AWE Auggies Winner",
-      "model": "/models/tie.glb"
+      "model": "/models/acorn.glb"
     },
     "bookCallLabel": "Book a Call Today"
   },

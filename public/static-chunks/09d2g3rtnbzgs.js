@@ -58,7 +58,7 @@
         return n().prismicProjects.get()[(t + 1e3 * e) % e];
       },
     }));
-    e.s(["useProjectsStore", 0, n]);
+    (globalThis.__PROJECTS_STORE__=n);e.s(["useProjectsStore", 0, n]);
   },
   75609,
   (e, t, n) => {

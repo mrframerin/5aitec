@@ -52,6 +52,93 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
   setTimeout(syncMetadata, 500);
   setTimeout(syncMetadata, 2000);
 })();
+
+// Scroll-driven carousel for projects section
+(() => {
+  const SLIDE_COUNT = 2;
+  const DEBOUNCE_MS = 500;
+  const ENTRY_GRACE_MS = 1500;
+  let lastWheelTime = 0;
+  let lastActivePage = null;
+  let pageEnteredAt = 0;
+  let prevPage = null;
+
+  // Reset carousel to slide 0 when entering projects from another page
+  const resetCarouselToZero = () => {
+    const projectsStore = globalThis.__PROJECTS_STORE__;
+    if (!projectsStore) return;
+    const projState = projectsStore.getState();
+    if (projState.selectedProjectIndex && projState.selectedProjectIndex.set) {
+      projState.selectedProjectIndex.set(0);
+    }
+  };
+
+  const trackActivePage = () => {
+    const pagesStore = globalThis.__PAGES_STORE__;
+    if (!pagesStore) return;
+    const state = pagesStore.getState();
+    const activePage = state.activePage && state.activePage.get ? state.activePage.get() : null;
+    if (activePage !== lastActivePage) {
+      prevPage = lastActivePage;
+      lastActivePage = activePage;
+      if (activePage === 'projects') {
+        pageEnteredAt = Date.now();
+        // Reset to first slide when entering from outside
+        resetCarouselToZero();
+        // Also reset again after grace period in case momentum still pushed it
+        setTimeout(resetCarouselToZero, 200);
+        setTimeout(resetCarouselToZero, 500);
+        setTimeout(resetCarouselToZero, 1000);
+      }
+    }
+  };
+  setInterval(trackActivePage, 50);
+
+  const onWheel = (e) => {
+    const pagesStore = globalThis.__PAGES_STORE__;
+    const projectsStore = globalThis.__PROJECTS_STORE__;
+    if (!pagesStore || !projectsStore) return;
+
+    const state = pagesStore.getState();
+    const activePage = state.activePage && state.activePage.get ? state.activePage.get() : null;
+    if (activePage !== 'projects') return;
+
+    const now = Date.now();
+
+    // Grace period after entering projects section - block everything
+    if (now - pageEnteredAt < ENTRY_GRACE_MS) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    if (now - lastWheelTime < DEBOUNCE_MS) {
+      e.preventDefault();
+      return;
+    }
+
+    const projState = projectsStore.getState();
+    const currentIdx = projState.selectedProjectIndex && projState.selectedProjectIndex.get
+      ? projState.selectedProjectIndex.get() : 0;
+    const normalizedIdx = ((currentIdx % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+
+    const direction = e.deltaY > 0 ? 1 : -1;
+
+    if (direction > 0 && normalizedIdx < SLIDE_COUNT - 1) {
+      e.preventDefault();
+      e.stopPropagation();
+      projState.selectedProjectIndex.set(currentIdx + 1);
+      lastWheelTime = now;
+    } else if (direction < 0 && normalizedIdx > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      projState.selectedProjectIndex.set(currentIdx - 1);
+      lastWheelTime = now;
+    }
+  };
+
+  window.addEventListener('wheel', onWheel, { passive: false, capture: true });
+})();
 `,
         }}
       />
