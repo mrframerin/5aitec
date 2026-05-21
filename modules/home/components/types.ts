@@ -76,6 +76,18 @@ export type HomeContent = {
     subline: string;
     items: { name: string; oneLiner: string }[];
   };
+  giving?: {
+    title: string;
+    subline: string;
+    body: string[];
+    items: { number: string; name: string; copy: string }[];
+    closing: {
+      heading: string;
+      body: string;
+      ctaLabel: string;
+      ctaEmail: string;
+    };
+  };
   office?: { assets?: Record<string, string> };
   contactScene?: { assets?: Record<string, string>; heading?: string };
   bankScene?: { assets?: Record<string, string> };

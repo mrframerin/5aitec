@@ -2,7 +2,7 @@
   "document": {
     "lang": "en",
     "title": "Saitec - 2026",
-    "description": "Empowering Your Business with Next-Generation Interactive 3D and AI Solutions. Based in Sweden and Working with Brands and Agencies Worldwide.",
+    "description": "Sai's digital playground. Twelve years building startups in deep tech, AI, and spatial computing. ShopOS and SeeIt are the current bets.",
     "icon": "/icon.svg",
     "stylesheet": "/main.css",
     "canonical": "https://5aitec.com"
@@ -53,40 +53,40 @@
         "title": "ShopOS",
         "subtitle": "Commerce AI • Active • 2025",
         "siteUrl": "https://shopos.ai",
-        "description": "Owning AI outcomes for brands — and building them agents and coworkers to get it done. Backed by Binny Bansal."
+        "description": "AI agents plus human squads running the full commerce stack for D2C brands. Creative production, catalog, performance marketing, and Shopify ops, in one platform. 40 team. V5. 4 cities."
       },
       {
         "uid": "seeit",
         "url": "/work/seeit",
-        "title": "SeeIt",
+        "title": "SeeIt AI",
         "subtitle": "Deep Tech • Research Lab • 2025",
-        "siteUrl": "https://selectconcept.com/planner",
-        "description": "Open-source AI smart glasses. On-device memory. Built in public."
+        "siteUrl": "https://seeit.ai",
+        "description": "Open-source AI smart glasses research lab. Glass 2 ships in 2025 with a monochrome display, edge AI, on-device processing. Fork the stack. Build on it. Glass 2. Open Source. 3 partners."
       }
     ]
   },
   "about": {
-    "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+    "title": "12 years. No plans to stop.",
     "intro": {
       "sceneTitle": "About Sai",
-      "title": "Making Deep-Tech Real, One Improbable Bet at a Time",
+      "title": "12 years. No plans to stop.",
       "columns": [
-        "I've got about 10 years of staying in the game. building early-stage startups. making things that are worth making. stanford gsb, 2025. est. 2015.",
-        "Mildly opinionated about most things. moderately opinionated about Spatial Computing. deeply opinionated about dosas. founded 15 ventures. one exit to walmart.",
-        "I build and invest in deep-tech. the wild bets. the blurry line between improbable and impossible. not just writing cheques - zero to one, hands in the code."
+        "I started in Bangalore in 2014. Early days of mobile AR. No playbook, no comparable companies, a lot of wrong turns. Scapic was the first one that got real traction. A no-code platform for AR and VR experiences that Flipkart eventually acquired to build Flipkart Camera.",
+        "Two years inside Flipkart running Camera and then Flipkart Labs. EVs, drones, emerging tech. Enterprise scale. Understood fast what I wanted, and didn't want, from a working environment. Left to build again. Cope.Studio (acquired by Polygon) and Reality Tools (acquired by MotionPage) came out of that period.",
+        "ShopOS and SeeIt are the current bets. ShopOS puts AI agents and human squads on commerce ops. SeeIt puts edge AI on wearables. Twelve years in. Still the most interesting time to build."
       ],
       "image": "/textures/jake_computer.webp"
     },
     "whatWeBuild": {
-      "title": "What We Build",
+      "title": "What I Build",
       "paragraphs": [
-        "Sai builds and backs deep-tech products that move from idea to market. AI, spatial computing, AR commerce, and early-stage bets with real technical depth.",
-        "5AITEC works hands-on with founders: prototyping, product strategy, full-stack builds, and venture support. Short path from wild thought to working thing."
+        "ShopOS and SeeIt are the current builds. ShopOS is AI agents and human squads running the full commerce stack for D2C brands. SeeIt is an open-source AI smart glasses research lab. Glass 2 ships in 2025.",
+        "Spuddish is the investing arm. Deep tech, seed stage. Not a cheque-and-disappear fund. I work in the problem with founders. Product architecture, GTM, the 1am pivot conversations."
       ]
     },
     "clients": {
       "title": "Built and Backed",
-      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. exited Scapic to Walmart | Flipkart. backed by Binny Bansal.",
+      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. Scapic was acquired by Flipkart to build Flipkart Camera, the largest AR commerce platform at the time.",
       "images": {
         "leftPerson": "/textures/transparent_1x1.png",
         "rightPerson": "/textures/transparent_1x1.png"
@@ -110,8 +110,8 @@
       }
     },
     "serious": {
-      "title": "For Founders Serious About the Future",
-      "paragraph": "Things that are worth making shape the future in positive ways. but getting these things out of the lab and into people's lives isn't easy.\n\nI build and invest in deep-tech. the wild bets. founded 15 ventures. exited one to walmart. not just writing cheques, zero to one, hands in the code.\n\nStanford gsb 2025. 10 years in the game. Submit a pitch. I invest in things and friends I know."
+      "title": "For Founders Going For It",
+      "paragraph": "If you're building in deep tech, AI, or anything spatial, reach out. Especially if you're building it in India. The talent density is there. The capital and network often isn't.\n\nThe work I find useful is being in the problem with the team. Product architecture, GTM strategy, thinking through a pivot at 1am, being honest when something isn't working.\n\nNot just cheques. Zero to one, hands in the code. Submit a pitch."
     },
     "shredder": {
       "title": "Had Enough Reading? Let's Shred This Thing.",
@@ -123,9 +123,9 @@
       "subtitle": "The first decade was a warm-up"
     },
     "goldenTie": {
-      "title": "Check Out This Golden Acorn",
-      "subtitle": "You made it this far. Here's the haul.",
-      "awards": "Forbes 30 Under 30  —  BW Disrupt 40 Under 40  —  NASSCOM Emerge 50  —  YourStory Tech30  —  Economic Times Startup Award  —  AWE Auggies Winner",
+      "title": "A Few Acorns Caught",
+      "subtitle": "Twelve years of chasing. Here's the haul so far.",
+      "awards": "Forbes 30 Under 30 — BW Disrupt 40 Under 40 — NASSCOM Emerge 50 — YourStory Tech30 — Economic Times Startup Award — AWE Auggies Winner",
       "model": "/models/acorn.glb"
     },
     "bookCallLabel": "Book a Call Today"
@@ -184,6 +184,37 @@
       }
     ]
   },
+  "giving": {
+    "title": "Putting some back in.",
+    "subline": "An NGO initiative run alongside family. Three focus areas. Not a marketing story, work that needs doing.",
+    "body": [
+      "Building companies generates resources. Some of those resources should go toward things that matter outside the business.",
+      "These are the places we put time and money into. Quiet, ongoing, no campaigns attached."
+    ],
+    "items": [
+      {
+        "number": "01",
+        "name": "Pet Shelter",
+        "copy": "Animal welfare and rescue. Every stray deserves care and somewhere safe to be."
+      },
+      {
+        "number": "02",
+        "name": "Old Age Home",
+        "copy": "Care and community for elderly individuals who need support in their later years."
+      },
+      {
+        "number": "03",
+        "name": "Blind School",
+        "copy": "Education and resources for visually impaired children. Quality education is not a product of circumstance."
+      }
+    ],
+    "closing": {
+      "heading": "Building something worth backing?",
+      "body": "Through Spuddish, I back deep tech founders at seed stage. The investment is less about capital and more about being in the work. If you're building something interesting, especially in India, reach out.",
+      "ctaLabel": "sai@shopos.ai",
+      "ctaEmail": "sai@shopos.ai"
+    }
+  },
   "office": {
     "assets": {
       "deskboxModel": "/models/deskbox.glb"
@@ -234,7 +265,7 @@
     "address": {
       "street": "",
       "postalCode": "",
-      "city": "BLR / SFO / DXB",
+      "city": "BLR / SFO / DXB / CBE",
       "country": "",
       "countryCode": "IN"
     },

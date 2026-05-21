@@ -132,6 +132,7 @@ function scrubProjectData(
   nextProject: Record<string, unknown> | null,
   projectIds: string[],
   runtimeProjects: Record<string, unknown>[],
+  options: { skipProjectsRewrite?: boolean } = {},
 ): string {
   let nextStream = stream.replace(
     /"project_media":\[(\{"mux_playback_id":"[^"]+"\})(?:,\{"mux_playback_id":"[^"]+"\})*\]/g,
@@ -141,21 +142,23 @@ function scrubProjectData(
     /"projectIds":\[[^\]]*\]/g,
     `"projectIds":${JSON.stringify(projectIds)}`,
   );
-  const projectsStartMarker = '"projects":[';
-  const projectsEndMarker = '],"a11yChildren"';
-  const projectsStart = nextStream.indexOf(projectsStartMarker);
-  const projectsEnd = nextStream.indexOf(projectsEndMarker, projectsStart);
-  if (projectsStart >= 0 && projectsEnd > projectsStart) {
-    nextStream =
-      nextStream.slice(0, projectsStart) +
-      `"projects":${JSON.stringify(runtimeProjects)}` +
-      nextStream.slice(projectsEnd + 1);
-  }
-  if (nextProject) {
-    nextStream = nextStream.replace(
-      /"nextProject":\{[\s\S]*?\}\}\],\[\[/g,
-      `"nextProject":${JSON.stringify(nextProject)}}],[[`,
-    );
+  if (!options.skipProjectsRewrite) {
+    const projectsStartMarker = '"projects":[';
+    const projectsEndMarker = '],"a11yChildren"';
+    const projectsStart = nextStream.indexOf(projectsStartMarker);
+    const projectsEnd = nextStream.indexOf(projectsEndMarker, projectsStart);
+    if (projectsStart >= 0 && projectsEnd > projectsStart) {
+      nextStream =
+        nextStream.slice(0, projectsStart) +
+        `"projects":${JSON.stringify(runtimeProjects)}` +
+        nextStream.slice(projectsEnd + 1);
+    }
+    if (nextProject) {
+      nextStream = nextStream.replace(
+        /"nextProject":\{[\s\S]*?\}\}\],\[\[/g,
+        `"nextProject":${JSON.stringify(nextProject)}}],[[`,
+      );
+    }
   }
   return nextStream;
 }
@@ -165,6 +168,7 @@ function rewriteFlightPayloads(
   nextProject: Record<string, unknown> | null,
   projectIds: string[],
   runtimeProjects: Record<string, unknown>[],
+  options: { skipProjectsRewrite?: boolean } = {},
 ): string {
   return html.replace(
     /self\.__next_f\.push\(\[(\d+),([\s\S]*?)\]\)<\/script>/g,
@@ -174,7 +178,7 @@ function rewriteFlightPayloads(
         const decoded = JSON.parse(encodedPayload);
         if (typeof decoded !== "string") return match;
         return `self.__next_f.push([${chunkType},${JSON.stringify(
-          scrubProjectData(decoded, nextProject, projectIds, runtimeProjects),
+          scrubProjectData(decoded, nextProject, projectIds, runtimeProjects, options),
         )}])</script>`;
       } catch {
         return match;
@@ -206,9 +210,25 @@ export async function GET(request: Request, context: RouteContext) {
   const { uid } = await context.params;
 
   const homeContent = await loadHomeContent();
-  const project = homeContent.projects.items.find(
-    (project: HomeProject) => project.uid === uid,
-  );
+
+  // /giving uses the work-page template too — synthesise a HomeProject for it
+  // so the existing pipeline can find a template at public/work/giving/index.html
+  // without exposing "giving" inside the home page's projects carousel.
+  const synthesizedGiving: HomeProject | null =
+    uid === "giving" && homeContent.giving
+      ? {
+          uid: "giving",
+          url: "/work/giving",
+          title: homeContent.giving.title,
+          subtitle: "Giving · Ongoing",
+          description: homeContent.giving.subline,
+        }
+      : null;
+
+  const project =
+    homeContent.projects.items.find(
+      (project: HomeProject) => project.uid === uid,
+    ) ?? synthesizedGiving;
   if (!project) {
     return NextResponse.json({ message: "Project not found" }, { status: 404 });
   }
@@ -234,11 +254,17 @@ export async function GET(request: Request, context: RouteContext) {
     );
   }
 
+  // /work/giving uses an unrelated snapshot whose embedded "projects" / "nextProject"
+  // slots represent the current page's own data, not a project carousel. Rewriting
+  // them with the home page's runtime projects corrupts the RSC chunk graph and
+  // breaks Flight hydration ("enqueueModel is not a function").
+  const scrubOptions = { skipProjectsRewrite: uid === "giving" };
+
   // RSC requests (Next.js client-side navigation) send RSC: 1 header.
   // Return the extracted flight stream so the router can transition without a full reload.
   const isRscRequest = request.headers.get("RSC") === "1";
   if (isRscRequest) {
-    return new NextResponse(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects), {
+    return new NextResponse(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects, scrubOptions), {
       headers: {
         "content-type": "text/x-component",
         "cache-control": "no-store, max-age=0",
@@ -251,6 +277,7 @@ export async function GET(request: Request, context: RouteContext) {
     nextProject,
     projectIds,
     runtimeProjects,
+    scrubOptions,
   );
 
   return new NextResponse(injectMuxThumbnailPatch(
