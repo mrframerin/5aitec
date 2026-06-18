@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export function AboutRuntimeGate() {
   useEffect(() => {
     const root = document.documentElement;
+    root.classList.add("about-enhanced");
     const topbar = document.querySelector<HTMLElement>("[data-about-topbar]");
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const filmStrip = document.querySelector<HTMLElement>("[data-film-strip]");
@@ -98,6 +99,7 @@ export function AboutRuntimeGate() {
       root.style.removeProperty("--about-scroll-y");
       root.style.removeProperty("--about-mx");
       root.style.removeProperty("--about-my");
+      root.classList.remove("about-enhanced");
     };
   }, []);
 

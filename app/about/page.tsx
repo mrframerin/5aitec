@@ -626,12 +626,17 @@ body::after {
 .about-image-shell.is-loaded:not(.is-placeholder) .about-placeholder-text { display: none; }
 
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 700ms ease-out, transform 700ms ease-out;
 }
 
-[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.about-enhanced [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.about-enhanced [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---- micro-interactions (keep the page alive) ---- */
 .about-page { overflow-x: clip; }
