@@ -17,6 +17,54 @@ export function getProjectIndexByUid(uid: string): number | null {
   return typeof idx === "number" ? idx : null;
 }
 
+export type HomeProject = {
+  uid: string;
+  url: string;
+  title: string;
+  subtitle?: string;
+  siteUrl?: string;
+  description?: string;
+};
+
+function dedupeProjects(projects: HomeProject[]): HomeProject[] {
+  return projects.filter(
+    (project, index, list) =>
+      list.findIndex((item) => item.uid === project.uid) === index,
+  );
+}
+
+export function buildRuntimeProject(project: HomeProject) {
+  const projectIndex = getProjectIndexByUid(project.uid) ?? 0;
+  return {
+    uid: project.uid,
+    url: project.url,
+    title: project.title,
+    subtitle: project.subtitle ?? "",
+    site_link: project.siteUrl
+      ? {
+          link_type: "Web",
+          key: `local-${project.uid}`,
+          url: project.siteUrl,
+          target: "_blank",
+        }
+      : null,
+    collaborator: null,
+    mux_playback_id: `local-project-${projectIndex}`,
+    brightness: null,
+    contrast: null,
+    project_media: [{ mux_playback_id: `local-project-${projectIndex}` }],
+    description: project.description ?? "",
+  };
+}
+
+export function buildRuntimeProjects(projects: HomeProject[]) {
+  return dedupeProjects(projects).map(buildRuntimeProject);
+}
+
+export function buildProjectIds(projects: HomeProject[]): string[] {
+  return dedupeProjects(projects).map((project) => project.uid);
+}
+
 export function buildMuxThumbnailPatchScript({
   fallbackIndex = null,
   nextProject = null,
@@ -30,12 +78,17 @@ export function buildMuxThumbnailPatchScript({
   const nextProject = ${nextProject === null ? "null" : JSON.stringify(nextProject)};
   const projectIds = ${JSON.stringify(projectIds)};
   const runtimeProjects = ${JSON.stringify(runtimeProjects)};
+  const needsFlightRewrite =
+    fallbackIndex != null || runtimeProjects.length > 0 || projectIds.length > 0;
   const scrubProjectMedia = (value) => {
-    if (fallbackIndex == null || typeof value !== "string") return value;
-    let nextValue = value.replace(
-      /"project_media":\\[(\\{"mux_playback_id":"[^"]+"\\})(?:,\\{"mux_playback_id":"[^"]+"\\})*\\]/g,
-      '"project_media":[$1]',
-    );
+    if (typeof value !== "string") return value;
+    let nextValue = value;
+    if (fallbackIndex != null) {
+      nextValue = nextValue.replace(
+        /"project_media":\\[(\\{"mux_playback_id":"[^"]+"\\})(?:,\\{"mux_playback_id":"[^"]+"\\})*\\]/g,
+        '"project_media":[$1]',
+      );
+    }
     if (projectIds.length) {
       nextValue = nextValue.replace(
         /"projectIds":\\[[^\\]]*\\]/g,
@@ -78,7 +131,9 @@ export function buildMuxThumbnailPatchScript({
     if (document.documentElement) {
       antiPortfolioObserver.observe(document.documentElement, { subtree: true, childList: true });
     }
+  }
 
+  if (needsFlightRewrite) {
     self.__next_f = self.__next_f || [];
     const origPush = self.__next_f.push.bind(self.__next_f);
     self.__next_f.push = function patchedNextFlightPush() {
@@ -100,6 +155,9 @@ export function buildMuxThumbnailPatchScript({
     if (typeof v === "number") return v;
     return fallbackIndex;
   };
+  const resolveThumbnailPath = (idx) => {
+    return "/textures/projects/project_thumb_order_" + idx + ".jpg";
+  };
   const isMuxVideoUrl = (u) => typeof u === "string" && (u.includes("stream.mux.com/") || /\\.m3u8(\\?|$)/.test(u) || /\\.ts(\\?|$)/.test(u));
   const rewriteMuxImageUrl = (value) => {
     if (typeof value !== "string") return value;
@@ -107,7 +165,7 @@ export function buildMuxThumbnailPatchScript({
     if (!m) return value;
     const idx = resolveIndex(m[1]);
     if (idx == null) return value;
-    return "/textures/projects/project_thumb_" + idx + ".jpg";
+    return resolveThumbnailPath(idx);
   };
 
   const origFetch = window.fetch.bind(window);

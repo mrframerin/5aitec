@@ -118,7 +118,7 @@ export const aboutContent = {
       },
       paragraphs: [
         "I started in Bangalore in 2014, building in the early days of mobile AR. No playbook. No comparable companies to reference. A lot of wrong turns.",
-        "Scapic was the first company that got real traction. We built a no-code platform for creating AR and VR experiences — 300,000+ experiences, 50+ awards including the National Startup Awards and Facebook India Awards. When the pandemic hit and e-commerce moved everything online, we pivoted to AR commerce: product visualization, try-before-you-buy, camera-based shopping. Brands running on Scapic saw 94% higher purchase intent and 30% conversion lifts. Flipkart acquired the company to build Flipkart Camera — at the time, the largest AR commerce platform in the world.",
+        "Scapic was the first company that got real traction. We built a no-code platform for creating AR and VR experiences, 300,000+ experiences, 50+ awards including the National Startup Awards and Facebook India Awards. When the pandemic hit and e-commerce moved everything online, we pivoted to AR commerce: product visualization, try-before-you-buy, camera-based shopping. Brands running on Scapic saw 94% higher purchase intent and 30% conversion lifts. Flipkart acquired the company to build Flipkart Camera, at the time, the largest AR commerce platform in the world.",
       ],
     },
     {
@@ -161,14 +161,14 @@ export const aboutContent = {
       },
       paragraphs: [
         "ShopOS and SeeIt are the current bets.",
-        "ShopOS applies AI agents to commerce operations — the repetitive, high-volume work that D2C brands pay agencies and contractors to do, badly and expensively. SeeIt applies edge AI to wearables — specifically the form factor that Scapic always pointed toward but could never reach from a browser.",
+        "ShopOS applies AI agents to commerce operations, the repetitive, high-volume work that D2C brands pay agencies and contractors to do, badly and expensively. SeeIt applies edge AI to wearables, specifically the form factor that Scapic always pointed toward but could never reach from a browser.",
         "Twelve years in. Still the most interesting time to be building.",
       ],
     },
   ],
 
   locationLine: "Dubai ↔ Bangalore ↔ San Francisco ↔ Coimbatore",
-  credential: "Stanford GSB — twice over.",
+  credential: "Stanford GSB, twice over.",
 
   interests: {
     title: "Outside of building.",
@@ -260,7 +260,7 @@ export const aboutContent = {
     },
     body: [
       "The goal is simple: work closely with founders and have fun doing it.",
-      "I don't write cheques and disappear. The work I find useful is being in the problem with the team — product architecture, GTM strategy, thinking through a pivot at 1am, being honest when something isn't working.",
+      "I don't write cheques and disappear. The work I find useful is being in the problem with the team, product architecture, GTM strategy, thinking through a pivot at 1am, being honest when something isn't working.",
       "Focus: deep tech, AI, spatial computing, commerce infrastructure. Especially interested in founders building in India. The talent density is there. The capital and network often isn't. That's the gap I can help close.",
     ],
     tags: ["Seed stage", "Deep tech", "Hands-on", "India focus"],

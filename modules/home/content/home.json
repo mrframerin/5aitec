@@ -25,8 +25,8 @@
       "href": "#contact"
     },
     {
-      "label": "Giving",
-      "href": "/giving"
+      "label": "Skills.md",
+      "href": "#"
     }
   ],
   "hero": {
@@ -51,7 +51,7 @@
         "uid": "shopos",
         "url": "/work/shopos",
         "title": "ShopOS",
-        "subtitle": "Commerce AI • Active • 2025",
+        "subtitle": "Commerce AI - Active - 2025",
         "siteUrl": "https://shopos.ai",
         "description": "AI agents plus human squads running the full commerce stack for D2C brands. Creative production, catalog, performance marketing, and Shopify ops, in one platform. 40 team. V5. 4 cities."
       },
@@ -59,9 +59,49 @@
         "uid": "seeit",
         "url": "/work/seeit",
         "title": "SeeIt AI",
-        "subtitle": "Deep Tech • Research Lab • 2025",
+        "subtitle": "Deep Tech - Research Lab - 2025",
         "siteUrl": "https://seeit.ai",
         "description": "Open-source AI smart glasses research lab. Glass 2 ships in 2025 with a monochrome display, edge AI, on-device processing. Fork the stack. Build on it. Glass 2. Open Source. 3 partners."
+      },
+      {
+        "uid": "flipkart-camera",
+        "url": "/work/flipkart-camera",
+        "title": "Flipkart",
+        "subtitle": "Camera - AR Commerce",
+        "siteUrl": "https://www.flipkart.com/",
+        "description": "Built and scaled Camera and Labs work inside Flipkart across AR commerce and emerging technology."
+      },
+      {
+        "uid": "reality-tools",
+        "url": "/work/reality-tools",
+        "title": "Reality Tools",
+        "subtitle": "Spatial Tools - Acquired by MotionPage",
+        "siteUrl": "https://motion.page/",
+        "description": "Spatial and immersive tooling from the post-Flipkart builder chapter, later acquired by MotionPage."
+      },
+      {
+        "uid": "cope-studio",
+        "url": "/work/cope-studio",
+        "title": "Cope.Studio",
+        "subtitle": "Creative Tech - Acquired by Polygon",
+        "siteUrl": "https://polygon.technology/",
+        "description": "A creative technology studio building product, brand, and web3 experiments, later acquired by Polygon."
+      },
+      {
+        "uid": "scapic",
+        "url": "/work/scapic",
+        "title": "Scapic",
+        "subtitle": "AR Commerce - Acquired by Flipkart",
+        "siteUrl": "https://www.flipkart.com/",
+        "description": "No-code AR and VR commerce tools that scaled into Flipkart Camera after acquisition."
+      },
+      {
+        "uid": "stanford",
+        "url": "/work/stanford",
+        "title": "Stanford",
+        "subtitle": "GSB - 2025",
+        "siteUrl": "https://www.gsb.stanford.edu/",
+        "description": "Stanford GSB, 2025."
       }
     ]
   },
@@ -71,9 +111,9 @@
       "sceneTitle": "About Sai",
       "title": "12 years. No plans to stop.",
       "columns": [
-        "I started in Bangalore in 2014. Early days of mobile AR. No playbook, no comparable companies, a lot of wrong turns. Scapic was the first one that got real traction. A no-code platform for AR and VR experiences that Flipkart eventually acquired to build Flipkart Camera.",
-        "Two years inside Flipkart running Camera and then Flipkart Labs. EVs, drones, emerging tech. Enterprise scale. Understood fast what I wanted, and didn't want, from a working environment. Left to build again. Cope.Studio (acquired by Polygon) and Reality Tools (acquired by MotionPage) came out of that period.",
-        "ShopOS and SeeIt are the current bets. ShopOS puts AI agents and human squads on commerce ops. SeeIt puts edge AI on wearables. Twelve years in. Still the most interesting time to build."
+        "I started in Bangalore in 2014, building in the early days of mobile AR. No playbook. No comparable companies to reference. A lot of wrong turns. Scapic was the first company that got real traction, a no-code platform for AR and VR experiences. 300,000 experiences, 50 awards including the National Startup Awards and Facebook India Awards. Flipkart acquired the company to build Flipkart Camera, at the time the largest AR commerce platform in the world.",
+        "Two years at Flipkart running Flipkart Camera and then Flipkart Labs, EVs, drones, emerging tech. Enterprise scale. Hundreds of millions of users. Understood fast what I wanted and didn't want from a working environment. Left to build again. Cope.Studio (acquired by Polygon) and Reality Tools (acquired by MotionPage) both came out of that period.",
+        "ShopOS and SeeIt are the current bets. ShopOS applies AI agents to commerce operations, the repetitive, high-volume work that D2C brands pay agencies and contractors to do, badly and expensively. SeeIt applies edge AI to wearables, the form factor that Scapic always pointed toward but could never reach from a browser. Twelve years in. Still the most interesting time to be building."
       ],
       "image": "/textures/jake_computer.webp"
     },
@@ -85,28 +125,15 @@
       ]
     },
     "clients": {
-      "title": "Built and Backed",
-      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. Scapic was acquired by Flipkart to build Flipkart Camera, the largest AR commerce platform at the time.",
+      "title": "",
+      "paragraph": "",
       "images": {
         "leftPerson": "/textures/transparent_1x1.png",
         "rightPerson": "/textures/transparent_1x1.png"
       },
       "logoCloud": {
-        "image": "/textures/customers_logo_cloud.png",
-        "logos": [
-          "ICA",
-          "Region Ostergotland",
-          "Pepsi",
-          "RISE",
-          "SPP",
-          "Suicide Zero",
-          "Scandic",
-          "Cloetta",
-          "SON",
-          "Universeum",
-          "Stadium",
-          "Garageport Experten"
-        ]
+        "image": "/textures/transparent_1x1.png",
+        "logos": []
       }
     },
     "serious": {
@@ -128,7 +155,7 @@
       "awards": "Forbes 30 Under 30 — BW Disrupt 40 Under 40 — NASSCOM Emerge 50 — YourStory Tech30 — Economic Times Startup Award — AWE Auggies Winner",
       "model": "/models/acorn.glb"
     },
-    "bookCallLabel": "Book a Call Today"
+    "bookCallLabel": "Say Hi"
   },
   "antiPortfolio": {
     "title": "Anti-Portfolio",
@@ -221,7 +248,7 @@
     }
   },
   "contactScene": {
-    "heading": "“Vanakkam”",
+    "heading": "Vanakkam",
     "assets": {
       "phonesModel": "/models/phones.glb",
       "dirtTexture": "/textures/dirt.jpg"
@@ -265,7 +292,7 @@
     "address": {
       "street": "",
       "postalCode": "",
-      "city": "BLR / SFO / DXB / CBE",
+      "city": "BLR / SFO / DXB",
       "country": "",
       "countryCode": "IN"
     },

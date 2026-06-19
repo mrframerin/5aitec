@@ -13,6 +13,10 @@ type RouteContext = {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
+function getLocalThumbnailFile(index: number) {
+  return `project_thumb_order_${index}.jpg`;
+}
+
 export async function GET(request: Request, context: RouteContext) {
   const { playbackId } = await context.params;
   const match = playbackId.match(/^local-project-(\d+)$/);
@@ -38,13 +42,8 @@ export async function GET(request: Request, context: RouteContext) {
     });
   }
 
-  const imagePath = path.join(
-    process.cwd(),
-    "public",
-    "textures",
-    "projects",
-    `project_thumb_${match?.[1] ?? localIndex}.jpg`,
-  );
+  const thumbnailIndex = Number(match?.[1] ?? localIndex);
+  const imagePath = path.join(process.cwd(), "public", "textures", "projects", getLocalThumbnailFile(thumbnailIndex));
   const image = await readFile(imagePath);
 
   return new NextResponse(new Uint8Array(image), {

@@ -1,11 +1,23 @@
-import { buildMuxThumbnailPatchScript } from "../runtime-patches/mux-thumbnail-patch";
-import type { RuntimeContent } from "./types";
+import {
+  buildMuxThumbnailPatchScript,
+  buildProjectIds,
+  buildRuntimeProjects,
+} from "../runtime-patches/mux-thumbnail-patch";
+import type { HomeContent, RuntimeContent } from "./types";
 
 type HomeRuntimeProps = {
   runtime: RuntimeContent;
+  projects: HomeContent["projects"]["items"];
 };
 
-export function HomeRuntime({ runtime }: HomeRuntimeProps) {
+export function HomeRuntime({ runtime, projects }: HomeRuntimeProps) {
+  // Rewrite the baked-in flight payload (which only ships two projects) so the
+  // home film strip renders every project from home.json in order.
+  const patchScript = buildMuxThumbnailPatchScript({
+    runtimeProjects: buildRuntimeProjects(projects),
+    projectIds: buildProjectIds(projects),
+  });
+
   return (
     <>
       <script
@@ -13,9 +25,7 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
           __html: "window.next=window.next||{};",
         }}
       />
-      <script
-        dangerouslySetInnerHTML={{ __html: buildMuxThumbnailPatchScript() }}
-      />
+      <script dangerouslySetInnerHTML={{ __html: patchScript }} />
       <script src={runtime.flightScript} />
       {runtime.chunks.map((chunk) => (
         <script key={chunk} src={`${runtime.chunkBase}/${chunk}`} />
@@ -55,7 +65,10 @@ export function HomeRuntime({ runtime }: HomeRuntimeProps) {
 
 // Scroll-driven carousel for projects section
 (() => {
-  const SLIDE_COUNT = 2;
+  const SLIDE_COUNT = Math.max(
+    1,
+    globalThis.__SHADER_HOME_CONTENT__?.projects?.items?.length ?? 2,
+  );
   const DEBOUNCE_MS = 500;
   const ENTRY_GRACE_MS = 1500;
   let lastWheelTime = 0;

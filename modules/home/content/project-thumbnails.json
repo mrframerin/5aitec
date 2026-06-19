@@ -54,14 +54,16 @@
   "uidToIndex": {
     "shopos": 0,
     "seeit": 1,
+    "flipkart-camera": 2,
+    "reality-tools": 3,
+    "cope-studio": 4,
+    "scapic": 5,
+    "stanford": 6,
     "spuddish": 2,
     "omvara": 3,
-    "scapic": 4,
-    "flipkart-camera": 5,
     "house-of-models": 6,
     "gibbon": 7,
     "flipkart-labs": 8,
-    "cope-studio": 9,
     "dehidden": 10
   }
 }

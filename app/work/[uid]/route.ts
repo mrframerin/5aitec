@@ -3,7 +3,11 @@ import path from "node:path";
 import { NextResponse } from "next/server";
 import {
   buildMuxThumbnailPatchScript,
+  buildProjectIds,
+  buildRuntimeProject,
+  buildRuntimeProjects,
   getProjectIndexByUid,
+  type HomeProject,
 } from "../../../modules/home/runtime-patches/mux-thumbnail-patch";
 
 type RouteContext = {
@@ -11,6 +15,9 @@ type RouteContext = {
     uid: string;
   }>;
 };
+
+// HomeProject, buildRuntimeProjects and buildProjectIds are shared with the home
+// page film strip (see mux-thumbnail-patch.ts) so both render the same projects.
 
 const contentPath = path.join(
   process.cwd(),
@@ -23,15 +30,6 @@ const contentPath = path.join(
 async function loadHomeContent() {
   return JSON.parse(await readFile(contentPath, "utf8"));
 }
-
-type HomeProject = {
-  uid: string;
-  url: string;
-  title: string;
-  subtitle?: string;
-  siteUrl?: string;
-  description?: string;
-};
 
 function getNextProject(projects: HomeProject[], uid: string) {
   const uniqueProjects = projects.filter(
@@ -64,48 +62,6 @@ function getNextProject(projects: HomeProject[], uid: string) {
   };
 }
 
-function toRuntimeProject(project: HomeProject) {
-  const projectIndex = getProjectIndexByUid(project.uid) ?? 0;
-  return {
-    uid: project.uid,
-    url: project.url,
-    title: project.title,
-    subtitle: project.subtitle ?? "",
-    site_link: project.siteUrl
-      ? {
-          link_type: "Web",
-          key: `local-${project.uid}`,
-          url: project.siteUrl,
-          target: "_blank",
-        }
-      : null,
-    collaborator: null,
-    mux_playback_id: `local-project-${projectIndex}`,
-    brightness: null,
-    contrast: null,
-    project_media: [{ mux_playback_id: `local-project-${projectIndex}` }],
-    description: project.description ?? "",
-  };
-}
-
-function getRuntimeProjects(projects: HomeProject[]) {
-  return projects
-    .filter(
-      (project, index, list) =>
-        list.findIndex((item) => item.uid === project.uid) === index,
-    )
-    .map(toRuntimeProject);
-}
-
-function getUniqueProjectIds(projects: HomeProject[]) {
-  return projects
-    .filter(
-      (project, index, list) =>
-        list.findIndex((item) => item.uid === project.uid) === index,
-    )
-    .map((project) => project.uid);
-}
-
 function injectMuxThumbnailPatch(
   html: string,
   uid: string,
@@ -132,6 +88,7 @@ function scrubProjectData(
   nextProject: Record<string, unknown> | null,
   projectIds: string[],
   runtimeProjects: Record<string, unknown>[],
+  currentProject: Record<string, unknown> | null,
   options: { skipProjectsRewrite?: boolean } = {},
 ): string {
   let nextStream = stream.replace(
@@ -153,6 +110,16 @@ function scrubProjectData(
         `"projects":${JSON.stringify(runtimeProjects)}` +
         nextStream.slice(projectsEnd + 1);
     }
+    // Rewrite the page-level "project" prop (the project this page actually displays).
+    // In the snapshot it lives in the $L1a component as "project":{...},"projectIds":[...]
+    // — so the brand shown matches the URL even when a uid falls back to the shopos
+    // template (reality-tools and stanford have no snapshot of their own).
+    if (currentProject) {
+      nextStream = nextStream.replace(
+        /"project":\{[\s\S]*?\},"projectIds":/,
+        `"project":${JSON.stringify(currentProject)},"projectIds":`,
+      );
+    }
     if (nextProject) {
       nextStream = nextStream.replace(
         /"nextProject":\{[\s\S]*?\}\}\],\[\[/g,
@@ -168,6 +135,7 @@ function rewriteFlightPayloads(
   nextProject: Record<string, unknown> | null,
   projectIds: string[],
   runtimeProjects: Record<string, unknown>[],
+  currentProject: Record<string, unknown> | null,
   options: { skipProjectsRewrite?: boolean } = {},
 ): string {
   return html.replace(
@@ -178,7 +146,7 @@ function rewriteFlightPayloads(
         const decoded = JSON.parse(encodedPayload);
         if (typeof decoded !== "string") return match;
         return `self.__next_f.push([${chunkType},${JSON.stringify(
-          scrubProjectData(decoded, nextProject, projectIds, runtimeProjects, options),
+          scrubProjectData(decoded, nextProject, projectIds, runtimeProjects, currentProject, options),
         )}])</script>`;
       } catch {
         return match;
@@ -233,8 +201,8 @@ export async function GET(request: Request, context: RouteContext) {
     return NextResponse.json({ message: "Project not found" }, { status: 404 });
   }
   const nextProject = getNextProject(homeContent.projects.items, uid);
-  const projectIds = getUniqueProjectIds(homeContent.projects.items);
-  const runtimeProjects = getRuntimeProjects(homeContent.projects.items);
+  const projectIds = buildProjectIds(homeContent.projects.items);
+  const runtimeProjects = buildRuntimeProjects(homeContent.projects.items);
 
   const templatePath = path.join(
     process.cwd(),
@@ -243,15 +211,28 @@ export async function GET(request: Request, context: RouteContext) {
     uid,
     "index.html",
   );
+  const fallbackTemplatePath = path.join(
+    process.cwd(),
+    "public",
+    "work",
+    "shopos",
+    "index.html",
+  );
 
   let template: string;
+  let usedFallbackTemplate = false;
   try {
     template = await readFile(templatePath, "utf8");
   } catch {
-    return NextResponse.json(
-      { message: "Template not found for project" },
-      { status: 404 },
-    );
+    usedFallbackTemplate = true;
+    try {
+      template = await readFile(fallbackTemplatePath, "utf8");
+    } catch {
+      return NextResponse.json(
+        { message: "Template not found for project" },
+        { status: 404 },
+      );
+    }
   }
 
   // /work/giving uses an unrelated snapshot whose embedded "projects" / "nextProject"
@@ -260,11 +241,17 @@ export async function GET(request: Request, context: RouteContext) {
   // breaks Flight hydration ("enqueueModel is not a function").
   const scrubOptions = { skipProjectsRewrite: uid === "giving" };
 
+  // Only rewrite the displayed "project" prop when this uid had no snapshot of its own
+  // and fell back to the shopos template (reality-tools, stanford). Pages with their own
+  // snapshot already display the right brand (and keep their full media), so we leave them.
+  const currentProject =
+    usedFallbackTemplate && uid !== "giving" ? buildRuntimeProject(project) : null;
+
   // RSC requests (Next.js client-side navigation) send RSC: 1 header.
   // Return the extracted flight stream so the router can transition without a full reload.
   const isRscRequest = request.headers.get("RSC") === "1";
   if (isRscRequest) {
-    return new NextResponse(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects, scrubOptions), {
+    return new NextResponse(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects, currentProject, scrubOptions), {
       headers: {
         "content-type": "text/x-component",
         "cache-control": "no-store, max-age=0",
@@ -272,13 +259,20 @@ export async function GET(request: Request, context: RouteContext) {
     });
   }
 
-  const rewrittenTemplate = rewriteFlightPayloads(
+  let rewrittenTemplate = rewriteFlightPayloads(
     template,
     nextProject,
     projectIds,
     runtimeProjects,
+    currentProject,
     scrubOptions,
   );
+
+  // Fallback pages inherit the shopos template's <title>/og:title — fix them so the
+  // tab title and share previews match the brand the page actually shows.
+  if (usedFallbackTemplate && project.title) {
+    rewrittenTemplate = rewrittenTemplate.split("Work: ShopOS").join(`Work: ${project.title}`);
+  }
 
   return new NextResponse(injectMuxThumbnailPatch(
     rewrittenTemplate,

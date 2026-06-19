@@ -10,7 +10,7 @@ export function A11yContent({ content }: A11yContentProps) {
     ...content.about.whatWeBuild.paragraphs,
     content.about.clients.paragraph,
     content.about.serious.paragraph,
-  ];
+  ].filter(Boolean);
 
   return (
     <div id="json-content-layer">

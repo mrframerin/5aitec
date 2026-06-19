@@ -14,7 +14,7 @@ export function HomePage() {
     <>
       <A11yContent content={homeContent} />
       <HomeContentScript content={homeContent} />
-      <HomeRuntime runtime={runtime} />
+      <HomeRuntime runtime={runtime} projects={homeContent.projects.items} />
       <StructuredData content={homeContent} />
     </>
   );
