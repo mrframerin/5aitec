@@ -8,11 +8,11 @@ const outDir = path.join(root, "public", "textures", "projects");
 
 const thumbnails = [
   { key: "shopos", output: "project_thumb_order_0.jpg", background: "#d9d2c7", fit: 505 },
-  { key: "seeit", output: "project_thumb_order_1.jpg", background: "#e7645f", fit: 330 },
+  { key: "reality", output: "project_thumb_order_1.jpg", background: "#344047", fit: 440 },
   { key: "flipkart", output: "project_thumb_order_2.jpg", background: "#2d73d9", fit: 335 },
-  { key: "reality", output: "project_thumb_order_3.jpg", background: "#344047", fit: 440 },
+  { key: "scapic", output: "project_thumb_order_3.jpg", background: "#2f9d91", fit: 310 },
   { key: "cope", output: "project_thumb_order_4.jpg", background: "#353a48", fit: 255 },
-  { key: "scapic", output: "project_thumb_order_5.jpg", background: "#2f9d91", fit: 310 },
+  { key: "seeit", output: "project_thumb_order_5.jpg", background: "#e7645f", fit: 330 },
   { key: "stanford", output: "project_thumb_order_6.jpg", background: "#d9d2c7", fit: 405, keyWhite: true },
 ];
 

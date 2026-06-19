@@ -114,18 +114,18 @@ function scrubProjectData(
     // In the snapshot it lives in the $L1a component as "project":{...},"projectIds":[...]
     // — so the brand shown matches the URL even when a uid falls back to the shopos
     // template (reality-tools and stanford have no snapshot of their own).
-    if (currentProject) {
-      nextStream = nextStream.replace(
-        /"project":\{[\s\S]*?\},"projectIds":/,
-        `"project":${JSON.stringify(currentProject)},"projectIds":`,
-      );
-    }
-    if (nextProject) {
-      nextStream = nextStream.replace(
-        /"nextProject":\{[\s\S]*?\}\}\],\[\[/g,
-        `"nextProject":${JSON.stringify(nextProject)}}],[[`,
-      );
-    }
+  }
+  if (currentProject) {
+    nextStream = nextStream.replace(
+      /"project":\{[\s\S]*?\},"projectIds":/,
+      `"project":${JSON.stringify(currentProject)},"projectIds":`,
+    );
+  }
+  if (nextProject) {
+    nextStream = nextStream.replace(
+      /"nextProject":\{[\s\S]*?\}\}\],\[\[/g,
+      `"nextProject":${JSON.stringify(nextProject)}}],[[`,
+    );
   }
   return nextStream;
 }
@@ -204,11 +204,12 @@ export async function GET(request: Request, context: RouteContext) {
   const projectIds = buildProjectIds(homeContent.projects.items);
   const runtimeProjects = buildRuntimeProjects(homeContent.projects.items);
 
+  const templateUid = uid === "cope-studio" ? "shopos" : uid;
   const templatePath = path.join(
     process.cwd(),
     "public",
     "work",
-    uid,
+    templateUid,
     "index.html",
   );
   const fallbackTemplatePath = path.join(
@@ -220,7 +221,7 @@ export async function GET(request: Request, context: RouteContext) {
   );
 
   let template: string;
-  let usedFallbackTemplate = false;
+  let usedFallbackTemplate = templateUid !== uid;
   try {
     template = await readFile(templatePath, "utf8");
   } catch {
@@ -239,13 +240,12 @@ export async function GET(request: Request, context: RouteContext) {
   // slots represent the current page's own data, not a project carousel. Rewriting
   // them with the home page's runtime projects corrupts the RSC chunk graph and
   // breaks Flight hydration ("enqueueModel is not a function").
-  const scrubOptions = { skipProjectsRewrite: uid === "giving" };
+  const scrubOptions = { skipProjectsRewrite: true };
 
   // Only rewrite the displayed "project" prop when this uid had no snapshot of its own
   // and fell back to the shopos template (reality-tools, stanford). Pages with their own
   // snapshot already display the right brand (and keep their full media), so we leave them.
-  const currentProject =
-    usedFallbackTemplate && uid !== "giving" ? buildRuntimeProject(project) : null;
+  const currentProject = uid !== "giving" ? buildRuntimeProject(project) : null;
 
   // RSC requests (Next.js client-side navigation) send RSC: 1 header.
   // Return the extracted flight stream so the router can transition without a full reload.
