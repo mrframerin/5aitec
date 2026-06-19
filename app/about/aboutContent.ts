@@ -41,9 +41,9 @@ export const aboutContent = {
     },
     {
       src: "/about/film/03.png",
-      label: "Stanford 2018",
-      alt: "Sai on a campus walkway with a notebook in hand.",
-      desc: "Sai photo - Stanford 2018",
+      label: "Stanford Business",
+      alt: "Stanford Business logo centered on a solid red background.",
+      desc: "Stanford Business logo centered on red",
       width: 800,
       height: 1000,
     },

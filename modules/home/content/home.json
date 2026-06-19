@@ -30,7 +30,7 @@
     }
   ],
   "hero": {
-    "title": "Hi, I'm Sai.\nA bit of a Scrat\nchasing the acorn.",
+    "title": "Hi, I'm Saitec\nA bit of a Scrat\nchasing the acorn",
     "subtitle": "This is my digital playground.",
     "assets": {
       "computerModel": "/models/computer.glb",
@@ -99,46 +99,60 @@
         "uid": "stanford",
         "url": "/work/stanford",
         "title": "Stanford",
-        "subtitle": "GSB - 2025",
+        "subtitle": "GSB 2017 . GSB 2025",
         "siteUrl": "https://www.gsb.stanford.edu/",
         "description": "Stanford GSB, 2025."
       }
     ]
   },
   "about": {
-    "title": "12 years. No plans to stop.",
+    "title": "12 Years of Building in the Trenches",
     "intro": {
       "sceneTitle": "About Sai",
-      "title": "12 years. No plans to stop.",
+      "title": "12 Years of Building in the Trenches",
       "columns": [
-        "I started in Bangalore in 2014, building in the early days of mobile AR. No playbook. No comparable companies to reference. A lot of wrong turns. Scapic was the first company that got real traction, a no-code platform for AR and VR experiences. 300,000 experiences, 50 awards including the National Startup Awards and Facebook India Awards. Flipkart acquired the company to build Flipkart Camera, at the time the largest AR commerce platform in the world.",
-        "Two years at Flipkart running Flipkart Camera and then Flipkart Labs, EVs, drones, emerging tech. Enterprise scale. Hundreds of millions of users. Understood fast what I wanted and didn't want from a working environment. Left to build again. Cope.Studio (acquired by Polygon) and Reality Tools (acquired by MotionPage) both came out of that period.",
-        "ShopOS and SeeIt are the current bets. ShopOS applies AI agents to commerce operations, the repetitive, high-volume work that D2C brands pay agencies and contractors to do, badly and expensively. SeeIt applies edge AI to wearables, the form factor that Scapic always pointed toward but could never reach from a browser. Twelve years in. Still the most interesting time to be building."
+        "Started building early-stage startups in 2014. The one thing that's kept me going? Platform shifts. I have a soft corner for 2-letter tech trends. XR. 3D. AI. Spent the last decade building inside all three. Every time the world moved, something interesting happened.",
+        "Scapic was the first one. No-code AR and VR, acquired by Flipkart. The largest AR commerce platform in India at the time. Spent some years inside Flipkart, then the idea is what eats the entrepreneur, so I left to build again. Cope Studio (acquired by Polygon). Reality Tools (acquired by MotionPage). Dehidden (acquired by Layer-E). Plenty more experiments didn't stick. That's the whole game, honestly.",
+        "ShopOS. Let anyone build a brand and sell like the big boys, without a big team. AI agents as your first hires, handling the repetitive, high-volume work, so you stay focused on what moves the needle. SeeIt. The longer bet. At some point you'll put down your phone and the intelligence will be ambient, already around you, most likely in a pair of glasses. SeeIt is open-source XR and AI hardware anyone can build on. Touch grass. The AI comes with you."
       ],
       "image": "/textures/jake_computer.webp"
     },
     "whatWeBuild": {
-      "title": "What I Build",
+      "title": "Building something ambitious?",
       "paragraphs": [
-        "ShopOS and SeeIt are the current builds. ShopOS is AI agents and human squads running the full commerce stack for D2C brands. SeeIt is an open-source AI smart glasses research lab. Glass 2 ships in 2025.",
-        "Spuddish is the investing arm. Deep tech, seed stage. Not a cheque-and-disappear fund. I work in the problem with founders. Product architecture, GTM, the 1am pivot conversations."
+        "AI, XR or commerce. Seed stage or earlier.",
+        "Tell me what you're working on. What's broken. What you've tried.",
+        "I work in the problem with founders. Not just at the pitch meeting."
       ]
     },
     "clients": {
-      "title": "",
-      "paragraph": "",
+      "title": "Built and Backed",
+      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. exited Scapic to Walmart | Flipkart. backed by Binny Bansal.",
       "images": {
         "leftPerson": "/textures/transparent_1x1.png",
         "rightPerson": "/textures/transparent_1x1.png"
       },
       "logoCloud": {
-        "image": "/textures/transparent_1x1.png",
-        "logos": []
+        "image": "/textures/customers_logo_cloud.png",
+        "logos": [
+          "ICA",
+          "Region Ostergotland",
+          "Pepsi",
+          "RISE",
+          "SPP",
+          "Suicide Zero",
+          "Scandic",
+          "Cloetta",
+          "SON",
+          "Universeum",
+          "Stadium",
+          "Garageport Experten"
+        ]
       }
     },
     "serious": {
       "title": "For Founders Going For It",
-      "paragraph": "If you're building in deep tech, AI, or anything spatial, reach out. Especially if you're building it in India. The talent density is there. The capital and network often isn't.\n\nThe work I find useful is being in the problem with the team. Product architecture, GTM strategy, thinking through a pivot at 1am, being honest when something isn't working.\n\nNot just cheques. Zero to one, hands in the code. Submit a pitch."
+      "paragraph": "The best founders I know aren't chasing the dollars. They're just unable to stop.\n\nSomething about a problem won't let them go. They build. It breaks. They rebuild. The market ignores them. They keep going.\n\nThat's the only pattern I've seen with the winners. Relentlessness.\n\nTwelve years in, I still don't have a better explanation for why I do this. I just know I'm not done."
     },
     "shredder": {
       "title": "Had Enough Reading? Let's Shred This Thing.",
@@ -151,11 +165,11 @@
     },
     "goldenTie": {
       "title": "A Few Acorns Caught",
-      "subtitle": "Twelve years of chasing. Here's the haul so far.",
+      "subtitle": "",
       "awards": "Forbes 30 Under 30 — BW Disrupt 40 Under 40 — NASSCOM Emerge 50 — YourStory Tech30 — Economic Times Startup Award — AWE Auggies Winner",
       "model": "/models/acorn.glb"
     },
-    "bookCallLabel": "Say Hi"
+    "bookCallLabel": "Say hi"
   },
   "antiPortfolio": {
     "title": "Anti-Portfolio",
@@ -281,7 +295,7 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "Got a startup idea or a wild bet. Let's talk. I'm one email away.",
+    "intro": "",
     "email": "hello@5aitec.com",
     "ceoEmail": "hello@5aitec.com",
     "bookCallUrl": "https://cal.com/5aitec/30min",
@@ -290,9 +304,9 @@
       "body": "I invest in things and friends I know. Submit a pitch. I'm one email away, hello@5aitec.com"
     },
     "address": {
-      "street": "",
+      "street": "BLR / SFO / DXB",
       "postalCode": "",
-      "city": "BLR / SFO / DXB",
+      "city": "",
       "country": "",
       "countryCode": "IN"
     },

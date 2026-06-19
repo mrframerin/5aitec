@@ -32,9 +32,6 @@ export default function AboutPage() {
       <div className="about-monitor-glass" aria-hidden="true" />
 
       <header className="about-topbar" data-about-topbar>
-        <a href="/" className="about-wordmark" aria-label="Go to homepage">
-          5AITEC
-        </a>
         <a href="/" className="about-close" aria-label="Close about page">
           <span aria-hidden="true">×</span>
         </a>
@@ -246,10 +243,9 @@ body::after {
   position: fixed;
   z-index: 120;
   inset: 0 0 auto;
-  display: grid;
-  grid-template-columns: auto auto;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   min-height: 72px;
   padding: 18px clamp(22px, 4vw, 58px);
   color: var(--ink);
@@ -262,7 +258,7 @@ body::after {
   backdrop-filter: blur(16px);
 }
 
-.about-wordmark, .about-close, .about-label,
+.about-close, .about-label,
 .about-stats span, .about-film-card figcaption, .about-row-year,
 .about-interest-list span, .about-spuddish li, .about-work-grid span,
 .about-placeholder-text {
@@ -271,21 +267,7 @@ body::after {
   letter-spacing: 0.12em;
 }
 
-.about-wordmark, .about-close { color: inherit; text-decoration: none; }
-
-.about-wordmark {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 0.16em;
-  transition: opacity 300ms ease-out, transform 300ms ease-out;
-}
-
-.about-wordmark:hover {
-  opacity: 0.66;
-  transform: translateY(-1px);
-}
+.about-close { color: inherit; text-decoration: none; }
 
 .about-close {
   display: grid;
