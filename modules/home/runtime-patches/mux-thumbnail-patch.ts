@@ -78,6 +78,30 @@ export function buildMuxThumbnailPatchScript({
   const nextProject = ${nextProject === null ? "null" : JSON.stringify(nextProject)};
   const projectIds = ${JSON.stringify(projectIds)};
   const runtimeProjects = ${JSON.stringify(runtimeProjects)};
+  const projectThumbnailIndices = Array.from(
+    new Set(
+      runtimeProjects
+        .map((project) => {
+          const local = String(project?.mux_playback_id ?? "").match(/^local-project-(\\d+)$/);
+          return local ? Number(local[1]) : null;
+        })
+        .filter((idx) => typeof idx === "number"),
+    ),
+  );
+  const preloadProjectThumbnails = () => {
+    for (const idx of projectThumbnailIndices) {
+      for (const href of [
+        "/textures/projects/project_thumb_" + idx + ".jpg",
+        "/textures/projects/project_thumb_order_" + idx + ".jpg",
+      ]) {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.decoding = "async";
+        img.src = href;
+      }
+    }
+  };
+  preloadProjectThumbnails();
   const needsFlightRewrite =
     fallbackIndex != null || runtimeProjects.length > 0 || projectIds.length > 0;
   const scrubProjectMedia = (value) => {
