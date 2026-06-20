@@ -153,6 +153,8 @@ export function buildMuxThumbnailPatchScript({
   const resolveIndex = (id) => {
     const v = map[id];
     if (typeof v === "number") return v;
+    const local = typeof id === "string" && id.match(/^local-project-(\\d+)$/);
+    if (local) return Number(local[1]);
     return fallbackIndex;
   };
   const resolveThumbnailPath = (idx) => {
