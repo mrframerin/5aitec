@@ -73,6 +73,45 @@ export function buildMuxThumbnailPatchScript({
 }: Options = {}): string {
   return `
 (() => {
+  // On-screen diagnostic, only active with ?debug in the URL. Lets us read the
+  // reel's texture state on a real device without USB remote-debugging.
+  if (typeof location !== "undefined" && /[?&]debug\\b/.test(location.search)) {
+    var __erudaScript = document.createElement("script");
+    __erudaScript.src = "https://cdn.jsdelivr.net/npm/eruda";
+    __erudaScript.onload = function () { try { if (window.eruda) { window.eruda.init(); window.eruda.show(); } } catch (e) {} };
+    (document.head || document.documentElement).appendChild(__erudaScript);
+
+    window.addEventListener("error", function (e) {
+      var target = e && e.target;
+      if (target && target.tagName === "IMG") {
+        var src = target.currentSrc || target.src || "";
+        if (src.indexOf("/textures/projects/") >= 0 || src.indexOf("/api/mux-image/") >= 0) {
+          console.error("[REELDEBUG] IMG load FAILED:", src);
+        }
+      }
+    }, true);
+
+    var __reelDump = function () {
+      try {
+        var ps = globalThis.__PROJECTS_STORE__;
+        if (!ps) { console.log("[REELDEBUG] projects store not ready"); return; }
+        var st = ps.getState();
+        var sel = st.selectedProjectIndex && st.selectedProjectIndex.get ? st.selectedProjectIndex.get() : "?";
+        var tex = st.projectThumbnailTextures && st.projectThumbnailTextures.get ? st.projectThumbnailTextures.get() : {};
+        var keys = Object.keys(tex || {});
+        console.log("[REELDEBUG] selectedIndex=", sel, "| textureKeys=", JSON.stringify(keys));
+        keys.forEach(function (k) {
+          Promise.resolve(tex[k]).then(function (texture) {
+            var img = texture && texture.image;
+            console.log("[REELDEBUG] " + k + " => RESOLVED " + (img ? (img.width + "x" + img.height + " src=" + (img.src || img.currentSrc || "")) : "NO IMAGE"));
+          }).catch(function (err) {
+            console.error("[REELDEBUG] " + k + " => REJECTED:", (err && (err.message || err)) || "unknown");
+          });
+        });
+      } catch (e) { console.error("[REELDEBUG] dump error", e); }
+    };
+    setInterval(__reelDump, 3000);
+  }
   const map = ${JSON.stringify(playbackIdToIndex)};
   const fallbackIndex = ${fallbackIndex === null ? "null" : JSON.stringify(fallbackIndex)};
   const nextProject = ${nextProject === null ? "null" : JSON.stringify(nextProject)};
