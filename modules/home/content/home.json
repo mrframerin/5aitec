@@ -126,27 +126,16 @@
       ]
     },
     "clients": {
-      "title": "Built and Backed",
-      "paragraph": "I've been a tinkerer all through. founded, funded, and figured out life in 15 early-stage startups. exited Scapic to Walmart | Flipkart. backed by Binny Bansal.",
+      "title": "And Then There's Omvara",
+      "paragraph": "A pet shelter. An old age home. Food distribution for the hungry.\n\nA small team. Head, heart, and hands working across Bangalore, Coimbatore, and Chennai.\n\nOmvara is our little NGO. No external capital. A tiny way of paying it forward.\n\n50,000 plus meals distributed. Thousands of puppies and dogs living better lives. Many thousands of people helped in their moments of need.\n\nNo deck. No investor updates. No growth metrics that matter to anyone outside of it.\n\nJust the work.\n\nThe mission is lifelong. And that's the only timeline that makes sense for it.",
       "images": {
         "leftPerson": "/textures/transparent_1x1.png",
         "rightPerson": "/textures/transparent_1x1.png"
       },
       "logoCloud": {
-        "image": "/textures/customers_logo_cloud.png",
+        "image": "/textures/omvara_logo.png",
         "logos": [
-          "ICA",
-          "Region Ostergotland",
-          "Pepsi",
-          "RISE",
-          "SPP",
-          "Suicide Zero",
-          "Scandic",
-          "Cloetta",
-          "SON",
-          "Universeum",
-          "Stadium",
-          "Garageport Experten"
+          "Omvara"
         ]
       }
     },
