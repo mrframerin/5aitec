@@ -76,17 +76,37 @@ export function buildMuxThumbnailPatchScript({
   // On-screen diagnostic, only active with ?debug in the URL. Lets us read the
   // reel's texture state on a real device without USB remote-debugging.
   if (typeof location !== "undefined" && /[?&]debug\\b/.test(location.search)) {
-    var __erudaScript = document.createElement("script");
-    __erudaScript.src = "https://cdn.jsdelivr.net/npm/eruda";
-    __erudaScript.onload = function () { try { if (window.eruda) { window.eruda.init(); window.eruda.show(); } } catch (e) {} };
-    (document.head || document.documentElement).appendChild(__erudaScript);
+    var __dbgState = {};
+    var __dbgFails = {};
+    var __dbgOverlay = null;
+    var __ensureOverlay = function () {
+      if (__dbgOverlay && document.body && document.body.contains(__dbgOverlay)) return;
+      if (!document.body) return;
+      __dbgOverlay = document.createElement("div");
+      __dbgOverlay.setAttribute("style", [
+        "position:fixed","top:0","left:0","right:0","z-index:2147483647",
+        "background:rgba(0,0,0,0.85)","color:#0f0","font:11px/1.35 monospace",
+        "padding:6px 8px","white-space:pre-wrap","pointer-events:none",
+        "max-height:55vh","overflow:hidden","border-bottom:1px solid #0f0",
+      ].join(";"));
+      document.body.appendChild(__dbgOverlay);
+    };
+    var __render = function (sel, keys) {
+      __ensureOverlay();
+      if (!__dbgOverlay) return;
+      var lines = ["[REELDEBUG] selectedIndex=" + sel + "  keys(" + keys.length + ")=" + JSON.stringify(keys)];
+      keys.forEach(function (k) { lines.push("  " + k + " => " + (__dbgState[k] || "pending")); });
+      var fk = Object.keys(__dbgFails);
+      if (fk.length) { lines.push("IMG FAILED:"); fk.forEach(function (u) { lines.push("  " + u); }); }
+      __dbgOverlay.textContent = lines.join("\\n");
+    };
 
     window.addEventListener("error", function (e) {
       var target = e && e.target;
       if (target && target.tagName === "IMG") {
         var src = target.currentSrc || target.src || "";
         if (src.indexOf("/textures/projects/") >= 0 || src.indexOf("/api/mux-image/") >= 0) {
-          console.error("[REELDEBUG] IMG load FAILED:", src);
+          __dbgFails[src] = 1;
         }
       }
     }, true);
@@ -94,23 +114,24 @@ export function buildMuxThumbnailPatchScript({
     var __reelDump = function () {
       try {
         var ps = globalThis.__PROJECTS_STORE__;
-        if (!ps) { console.log("[REELDEBUG] projects store not ready"); return; }
+        if (!ps) { __ensureOverlay(); if (__dbgOverlay) __dbgOverlay.textContent = "[REELDEBUG] projects store not ready"; return; }
         var st = ps.getState();
         var sel = st.selectedProjectIndex && st.selectedProjectIndex.get ? st.selectedProjectIndex.get() : "?";
         var tex = st.projectThumbnailTextures && st.projectThumbnailTextures.get ? st.projectThumbnailTextures.get() : {};
         var keys = Object.keys(tex || {});
-        console.log("[REELDEBUG] selectedIndex=", sel, "| textureKeys=", JSON.stringify(keys));
         keys.forEach(function (k) {
+          if (__dbgState[k] && __dbgState[k].indexOf("RESOLVED") === 0) return;
           Promise.resolve(tex[k]).then(function (texture) {
             var img = texture && texture.image;
-            console.log("[REELDEBUG] " + k + " => RESOLVED " + (img ? (img.width + "x" + img.height + " src=" + (img.src || img.currentSrc || "")) : "NO IMAGE"));
+            __dbgState[k] = "RESOLVED " + (img ? (img.width + "x" + img.height) : "NO IMAGE");
           }).catch(function (err) {
-            console.error("[REELDEBUG] " + k + " => REJECTED:", (err && (err.message || err)) || "unknown");
+            __dbgState[k] = "REJECTED " + ((err && (err.message || err)) || "unknown");
           });
         });
-      } catch (e) { console.error("[REELDEBUG] dump error", e); }
+        __render(sel, keys);
+      } catch (e) { __ensureOverlay(); if (__dbgOverlay) __dbgOverlay.textContent = "[REELDEBUG] dump error " + e; }
     };
-    setInterval(__reelDump, 3000);
+    setInterval(__reelDump, 1500);
   }
   const map = ${JSON.stringify(playbackIdToIndex)};
   const fallbackIndex = ${fallbackIndex === null ? "null" : JSON.stringify(fallbackIndex)};
