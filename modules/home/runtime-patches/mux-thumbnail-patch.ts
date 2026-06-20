@@ -79,6 +79,17 @@ export function buildMuxThumbnailPatchScript({
     var __dbgState = {};
     var __dbgFails = {};
     var __dbgOverlay = null;
+    var __gpuInfo = "gpu: checking...";
+    (function () {
+      try {
+        if (!("gpu" in navigator) || !navigator.gpu) { __gpuInfo = "gpu: NONE (navigator.gpu absent)"; return; }
+        navigator.gpu.requestAdapter().then(function (adapter) {
+          if (!adapter) { __gpuInfo = "gpu: present but NO ADAPTER"; return; }
+          var mbs = adapter.limits && adapter.limits.maxBufferSize;
+          __gpuInfo = "gpu: ADAPTER OK maxBufferSize=" + mbs + " (>=2GB? " + (mbs >= 0x80000000) + ")";
+        }).catch(function (e) { __gpuInfo = "gpu: requestAdapter ERROR " + (e && e.message); });
+      } catch (e) { __gpuInfo = "gpu: check threw " + (e && e.message); }
+    })();
     var __ensureOverlay = function () {
       if (__dbgOverlay && document.body && document.body.contains(__dbgOverlay)) return;
       if (!document.body) return;
@@ -94,7 +105,7 @@ export function buildMuxThumbnailPatchScript({
     var __render = function (sel, keys) {
       __ensureOverlay();
       if (!__dbgOverlay) return;
-      var lines = ["[REELDEBUG] selectedIndex=" + sel + "  keys(" + keys.length + ")=" + JSON.stringify(keys)];
+      var lines = ["[REELDEBUG] " + __gpuInfo, "selectedIndex=" + sel + "  keys(" + keys.length + ")=" + JSON.stringify(keys)];
       keys.forEach(function (k) { lines.push("  " + k + " => " + (__dbgState[k] || "pending")); });
       var fk = Object.keys(__dbgFails);
       if (fk.length) { lines.push("IMG FAILED:"); fk.forEach(function (u) { lines.push("  " + u); }); }
