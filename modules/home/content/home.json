@@ -88,20 +88,20 @@
         "description": "A creative technology studio building product, brand, and web3 experiments, later acquired by Polygon."
       },
       {
-        "uid": "scapic",
-        "url": "/work/scapic",
-        "title": "Scapic",
-        "subtitle": "AR Commerce - Acquired by Flipkart",
-        "siteUrl": "https://www.flipkart.com/",
-        "description": "No-code AR and VR commerce tools that scaled into Flipkart Camera after acquisition."
-      },
-      {
         "uid": "stanford",
         "url": "/work/stanford",
         "title": "Stanford",
         "subtitle": "GSB 2017 . GSB 2025",
         "siteUrl": "https://www.gsb.stanford.edu/",
         "description": "Stanford GSB, 2025."
+      },
+      {
+        "uid": "scapic",
+        "url": "/work/scapic",
+        "title": "Scapic",
+        "subtitle": "AR Commerce - Acquired by Flipkart",
+        "siteUrl": "https://www.flipkart.com/",
+        "description": "No-code AR and VR commerce tools that scaled into Flipkart Camera after acquisition."
       }
     ]
   },
