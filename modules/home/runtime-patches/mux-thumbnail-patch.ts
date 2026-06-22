@@ -4,7 +4,7 @@ import projectThumbnails from "../content/project-thumbnails.json";
 // is re-encoded so mobile devices refetch instead of serving a stale copy.
 // 20260622e: re-encoded Stanford (order_6) with the siblings' libjpeg-turbo
 // q95 progressive script (was a mozjpeg scan layout Android WebGL2 mis-decoded).
-const THUMBNAIL_VERSION = "20260622g";
+const THUMBNAIL_VERSION = "20260622h";
 
 type Options = {
   fallbackIndex?: number | null;
