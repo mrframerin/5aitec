@@ -10,6 +10,11 @@ type HomeRuntimeProps = {
   projects: HomeContent["projects"]["items"];
 };
 
+// Cache-bust the prebaked reel chunks (stable filenames served with
+// must-revalidate) so devices reliably pick up chunk fixes instead of replaying
+// a stale cached copy. Bump on every chunk edit.
+const ASSET_VERSION = "20260622a";
+
 export function HomeRuntime({ runtime, projects }: HomeRuntimeProps) {
   // Rewrite the baked-in flight payload (which only ships two projects) so the
   // home film strip renders every project from home.json in order.
@@ -26,9 +31,9 @@ export function HomeRuntime({ runtime, projects }: HomeRuntimeProps) {
         }}
       />
       <script dangerouslySetInnerHTML={{ __html: patchScript }} />
-      <script src={runtime.flightScript} />
+      <script src={`${runtime.flightScript}?v=${ASSET_VERSION}`} />
       {runtime.chunks.map((chunk) => (
-        <script key={chunk} src={`${runtime.chunkBase}/${chunk}`} />
+        <script key={chunk} src={`${runtime.chunkBase}/${chunk}?v=${ASSET_VERSION}`} />
       ))}
       <script
         dangerouslySetInnerHTML={{
