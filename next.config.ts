@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       { source: "/giving", destination: "/work/giving" },
+      { source: "/skills", destination: "/skills/index.html" },
       {
         source: "/app-pages-internals.js",
         destination: "/_next/static/chunks/app-pages-internals.js",
