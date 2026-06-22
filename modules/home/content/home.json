@@ -1,7 +1,7 @@
 {
   "document": {
     "lang": "en",
-    "title": "Saitec - 2026",
+    "title": "5aitec - 2026",
     "description": "Sai's digital playground. Twelve years building startups in deep tech, AI, and spatial computing. ShopOS and SeeIt are the current bets.",
     "icon": "/icon.svg",
     "stylesheet": "/main.css",
@@ -30,7 +30,7 @@
     }
   ],
   "hero": {
-    "title": "Hi, I'm Saitec\nA bit of a Scrat\nchasing the acorn",
+    "title": "Hi, I'm 5aitec\nA bit of a Scrat\nchasing the acorn",
     "subtitle": "This is my digital playground.",
     "assets": {
       "computerModel": "/models/computer.glb",
@@ -310,7 +310,7 @@
       "name": "5aitec",
       "legalName": "5aitec",
       "taxID": "",
-      "url": "https://www.5aitec.com",
+      "url": "https://5aitec.com",
       "email": "hello@5aitec.com"
     }
   }

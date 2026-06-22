@@ -31,6 +31,153 @@ async function loadHomeContent() {
   return JSON.parse(await readFile(contentPath, "utf8"));
 }
 
+// The work-page snapshots were captured from the source studio's site
+// (shader.se), so their <head> meta (canonical, og:url, og:image, twitter:image),
+// JSON-LD (@id, image, publisher logo) and visible <title>/og:title still name
+// shader.se / "Shader Development Studio". Once this site is crawled on its own
+// domain that hands Google a competitor's URLs and brand. Rewrite the host and
+// brand strings to 5aitec at serve time (one place, fully reversible) so every
+// work page presents itself as 5aitec.
+//
+// All swapped URLs resolve here: /api/mux-image is proxied locally and /work/<uid>
+// are real routes. The two JSON-LD asset URLs that 5aitec does not host
+// (dark-colored.png publisher logo, /og website image) are repointed to a real
+// 5aitec brand logo so the structured-data images don't 404.
+const CANONICAL_ORIGIN = "https://5aitec.com";
+const SHADER_ORIGIN = "https://www.shader.se";
+const BRAND_LOGO_URL = `${CANONICAL_ORIGIN}/textures/brand-logos/5aitec-03-vector.png`;
+
+// Flight payloads (self.__next_f.push([...])) carry RSC text chunks with exact
+// byte-length prefixes, so any length-changing edit inside them corrupts
+// hydration and crashes the renderer. They are runtime data only and never
+// crawled, so rebranding must skip them and touch only the static HTML.
+const FLIGHT_PUSH = /<script>self\.__next_f\.push\(\[[\s\S]*?\]\)<\/script>/g;
+
+function rebrandText(text: string): string {
+  return (
+    text
+      // Repoint the two JSON-LD asset URLs that 5aitec does not host to a real
+      // 5aitec logo (must run before the bare-host swap below).
+      .split(`${SHADER_ORIGIN}/dark-colored.png`)
+      .join(BRAND_LOGO_URL)
+      .split(`${SHADER_ORIGIN}/og`)
+      .join(BRAND_LOGO_URL)
+      // Swap the studio host in every form it appears (plain or slash-escaped):
+      // the bare host is always literal regardless of surrounding escaping.
+      .split("www.shader.se")
+      .join("5aitec.com")
+      // Social profiles (JSON-LD sameAs): shader.se's handles → 5aitec's.
+      .split("instagram.com/shadersweden")
+      .join("instagram.com/5aitec")
+      .split("linkedin.com/company/shadersweden")
+      .join("linkedin.com/in/5aitec")
+      .split("x.com/shadersweden")
+      .join("x.com/5aitec")
+      .split("shadersweden")
+      .join("5aitec")
+      // Brand, contact and legal strings that still name the source studio.
+      .split("hello@shader.se")
+      .join("hello@5aitec.com")
+      .split("Shader Development Studio")
+      .join("5aitec")
+      .split("Shader Sweden AB")
+      .join("5aitec")
+      .split("Shader Sweden")
+      .join("5aitec")
+      // Any remaining standalone "Shader" brand mention (JSON-LD alternateName,
+      // a11y labels), at any JSON escaping level. Must run AFTER the multi-word
+      // names above so they collapse to "5aitec" rather than leaving fragments
+      // like "5aitec Development Studio". The technical WebGL term "shader" is
+      // lowercase and lives only in the JS chunks, never in these snapshots.
+      .split("Shader")
+      .join("5aitec")
+  );
+}
+
+// Rebrand shader.se → 5aitec across the crawlable surface (head <meta>,
+// <link rel=canonical>, JSON-LD <script>) while leaving every RSC flight push
+// byte-for-byte intact, so the page still hydrates and renders.
+function rebrandSnapshot(html: string): string {
+  let out = "";
+  let last = 0;
+  let match: RegExpExecArray | null;
+  FLIGHT_PUSH.lastIndex = 0;
+  while ((match = FLIGHT_PUSH.exec(html)) !== null) {
+    out += rebrandText(html.slice(last, match.index));
+    out += match[0];
+    last = match.index + match[0].length;
+  }
+  out += rebrandText(html.slice(last));
+  return out;
+}
+
+// Byte-accurate rebrand of a decoded RSC flight stream. Rows are "<id>:<data>";
+// a row of the form "<id>:T<hexByteLen>,<body>" carries an exact UTF-8 byte
+// length (its body may even contain newlines), so we read each chunk by byte
+// length and recompute the prefix after rebranding. Changing a chunk body
+// without fixing its length prefix corrupts hydration and crashes the renderer.
+function rebrandFlightStream(stream: string): string {
+  const buf = Buffer.from(stream, "utf8");
+  const out: Buffer[] = [];
+  const NL = 0x0a;
+  const COLON = 0x3a;
+  const COMMA = 0x2c;
+  const T = 0x54;
+  let i = 0;
+  while (i < buf.length) {
+    const colon = buf.indexOf(COLON, i);
+    if (colon === -1) {
+      out.push(Buffer.from(rebrandText(buf.subarray(i).toString("utf8")), "utf8"));
+      break;
+    }
+    const idPart = buf.subarray(i, colon + 1); // "<id>:"
+    const p = colon + 1;
+    if (buf[p] === T) {
+      const comma = buf.indexOf(COMMA, p + 1);
+      const len = parseInt(buf.subarray(p + 1, comma).toString("latin1"), 16);
+      const textEnd = comma + 1 + len;
+      const body = Buffer.from(
+        rebrandText(buf.subarray(comma + 1, textEnd).toString("utf8")),
+        "utf8",
+      );
+      out.push(idPart);
+      out.push(Buffer.from(`T${body.length.toString(16)},`, "latin1"));
+      out.push(body);
+      i = textEnd;
+      if (buf[i] === NL) {
+        out.push(Buffer.from([NL]));
+        i++;
+      }
+    } else {
+      let nl = buf.indexOf(NL, p);
+      if (nl === -1) nl = buf.length;
+      out.push(Buffer.from(rebrandText(buf.subarray(i, nl).toString("utf8")), "utf8"));
+      if (nl < buf.length) {
+        out.push(Buffer.from([NL]));
+        i = nl + 1;
+      } else {
+        i = nl;
+      }
+    }
+  }
+  return Buffer.concat(out).toString("utf8");
+}
+
+// The snapshots ship the source studio's Umami analytics (analytics.shader.build),
+// which would send 5aitec's visitor data to that studio. Strip its preload link
+// and its __next_s loader push from the served HTML so it never loads.
+function stripSourceStudioAnalytics(html: string): string {
+  return html
+    .replace(
+      /<link[^>]*href="https:\/\/analytics\.shader\.build\/[^"]*"[^>]*>/g,
+      "",
+    )
+    .replace(
+      /<script>\(self\.__next_s=self\.__next_s\|\|\[\]\)\.push\(\["https:\/\/analytics\.shader\.build\/[^\]]*\]\)<\/script>/g,
+      "",
+    );
+}
+
 function getNextProject(projects: HomeProject[], uid: string) {
   const uniqueProjects = projects.filter(
     (project, index, list) =>
@@ -138,21 +285,35 @@ function rewriteFlightPayloads(
   currentProject: Record<string, unknown> | null,
   options: { skipProjectsRewrite?: boolean } = {},
 ): string {
-  return html.replace(
-    /self\.__next_f\.push\(\[(\d+),([\s\S]*?)\]\)<\/script>/g,
-    (match, chunkType: string, encodedPayload: string) => {
-      if (chunkType !== "1") return match;
-      try {
-        const decoded = JSON.parse(encodedPayload);
-        if (typeof decoded !== "string") return match;
-        return `self.__next_f.push([${chunkType},${JSON.stringify(
-          scrubProjectData(decoded, nextProject, projectIds, runtimeProjects, currentProject, options),
-        )}])</script>`;
-      } catch {
-        return match;
-      }
-    },
+  // Flight chunks (and even individual RSC text-chunk bodies) split across
+  // separate self.__next_f.push([1,…]) calls, so we must operate on the whole
+  // concatenated stream rather than per push. Concatenate every type-1 payload,
+  // apply the project-data scrub, then the byte-accurate shader→5aitec rebrand
+  // (last, so RSC text-chunk length prefixes are recomputed against final
+  // content), and re-emit as a single consolidated push in place of the
+  // originals. __next_f just concatenates pushed strings, so one push is
+  // equivalent to many.
+  const pushPattern = /<script>self\.__next_f\.push\(\[1,([\s\S]*?)\]\)<\/script>/g;
+  const matches = [...html.matchAll(pushPattern)];
+  if (matches.length === 0) return html;
+
+  let stream = "";
+  for (const match of matches) {
+    try {
+      const decoded = JSON.parse(match[1]);
+      if (typeof decoded === "string") stream += decoded;
+    } catch {
+      // ignore a malformed payload; it simply won't reach the consolidated push
+    }
+  }
+
+  stream = rebrandFlightStream(
+    scrubProjectData(stream, nextProject, projectIds, runtimeProjects, currentProject, options),
   );
+
+  const consolidated = `<script>self.__next_f.push([1,${JSON.stringify(stream)}])</script>`;
+  let seen = 0;
+  return html.replace(pushPattern, () => (seen++ === 0 ? consolidated : ""));
 }
 
 // Extract the RSC flight stream from a snapshot HTML file by walking
@@ -236,6 +397,11 @@ export async function GET(request: Request, context: RouteContext) {
     }
   }
 
+  // Re-brand shader.se → 5aitec in the static HTML (head meta + JSON-LD).
+  // The RSC flight payloads are rebranded separately, byte-accurately, in
+  // rewriteFlightPayloads / the RSC path below (see rebrandFlightStream).
+  template = stripSourceStudioAnalytics(rebrandSnapshot(template));
+
   // /work/giving uses an unrelated snapshot whose embedded "projects" / "nextProject"
   // slots represent the current page's own data, not a project carousel. Rewriting
   // them with the home page's runtime projects corrupts the RSC chunk graph and
@@ -251,7 +417,7 @@ export async function GET(request: Request, context: RouteContext) {
   // Return the extracted flight stream so the router can transition without a full reload.
   const isRscRequest = request.headers.get("RSC") === "1";
   if (isRscRequest) {
-    return new NextResponse(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects, currentProject, scrubOptions), {
+    return new NextResponse(rebrandFlightStream(scrubProjectData(extractRscStream(template), nextProject, projectIds, runtimeProjects, currentProject, scrubOptions)), {
       headers: {
         "content-type": "text/x-component",
         "cache-control": "no-store, max-age=0",

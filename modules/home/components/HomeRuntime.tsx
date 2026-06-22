@@ -13,7 +13,7 @@ type HomeRuntimeProps = {
 // Cache-bust the prebaked reel chunks (stable filenames served with
 // must-revalidate) so devices reliably pick up chunk fixes instead of replaying
 // a stale cached copy. Bump on every chunk edit.
-const ASSET_VERSION = "20260622j";
+const ASSET_VERSION = "20260622k";
 
 export function HomeRuntime({ runtime, projects }: HomeRuntimeProps) {
   // Rewrite the baked-in flight payload (which only ships two projects) so the

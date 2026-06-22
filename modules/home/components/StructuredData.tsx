@@ -42,7 +42,6 @@ export function StructuredData({ content }: StructuredDataProps) {
     "@type": "WebSite",
     name: content.schema.organization.name,
     url: content.document.canonical,
-    alternateName: ["Shader", "Shader Sweden"],
     description:
       "Creative development studio specialized in interactive 3D and AI solutions.",
     publisher: {

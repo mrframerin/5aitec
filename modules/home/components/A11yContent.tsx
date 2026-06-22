@@ -19,8 +19,8 @@ export function A11yContent({ content }: A11yContentProps) {
       </button>
 
       <nav aria-label="Main navigation" className="a11y-hidden">
-        <button type="button" aria-label="Shader logo, go to home page">
-          Shader - Home
+        <button type="button" aria-label="5aitec logo, go to home page">
+          5aitec - Home
         </button>
         <ul>
           {content.navigation.map((item) => (
@@ -86,7 +86,7 @@ export function A11yContent({ content }: A11yContentProps) {
           href={content.contact.bookCallUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Book a call with Shader on Cal.com, opens in new tab"
+          aria-label="Book a call with 5aitec on Cal.com, opens in new tab"
         >
           {content.about.bookCallLabel}
         </a>

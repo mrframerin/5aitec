@@ -44,7 +44,7 @@ export default function AntiPortfolioPage() {
             textTransform: "uppercase",
           }}
         >
-          <span>The Saitec Obituary</span>
+          <span>The 5aitec Obituary</span>
           <span>Vol. I — Founder's Edition</span>
           <span>{today}</span>
         </header>
