@@ -90,6 +90,23 @@ export function buildMuxThumbnailPatchScript({
         }).catch(function (e) { __gpuInfo = "gpu: requestAdapter ERROR " + (e && e.message); });
       } catch (e) { __gpuInfo = "gpu: check threw " + (e && e.message); }
     })();
+    // Replicate the chunk's bK() backend selection so we can see, on the device,
+    // whether the renderer picks WebGPU or its WebGL2 fallback.
+    var __backendInfo = "backend: computing...";
+    (function () {
+      try {
+        if (!("gpu" in navigator) || !navigator.gpu) { __backendInfo = "backend: WebGL2 (no navigator.gpu)"; return; }
+        var ua = navigator.userAgent, plat = navigator.platform || "", uaData = navigator.userAgentData && navigator.userAgentData.platform;
+        var browser = /Chrome|Chromium|Edg|OPR|Brave/i.test(ua) ? "chromium" : /Firefox/i.test(ua) ? "firefox" : (/Safari/i.test(ua) && !/Chrome/i.test(ua)) ? "safari" : null;
+        var os = (/Mac/i.test(plat) ? "macos" : /Win/i.test(plat) ? "windows" : /(iPhone|iPad|iPod)/i.test(plat) ? "ios" :
+          (uaData && /mac/i.test(uaData)) ? "macos" : (uaData && /win/i.test(uaData)) ? "windows" : (uaData && /ios|iphone|ipad/i.test(uaData)) ? "ios" :
+          (uaData && /android/i.test(uaData)) ? "android" : (uaData && /linux/i.test(uaData)) ? "linux" :
+          /(iPhone|iPad|iPod)/i.test(ua) ? "ios" : /Android/i.test(ua) ? "android" : /Macintosh|Mac OS X/i.test(ua) ? "macos" : /Windows/i.test(ua) ? "windows" : /Linux/i.test(ua) ? "linux" : null);
+        var allow = [["chromium","macos"],["safari","ios"],["chromium","ios"],["chromium","windows"],["chromium","android"]];
+        var inAllow = !!(browser && os && allow.some(function (p) { return p[0] === browser && p[1] === os; }));
+        __backendInfo = "backend: " + (inAllow ? "WebGPU" : "WebGL2") + " (browser=" + browser + " os=" + os + " inAllowlist=" + inAllow + ")";
+      } catch (e) { __backendInfo = "backend: detect threw " + (e && e.message); }
+    })();
     var __ensureOverlay = function () {
       if (__dbgOverlay && document.body && document.body.contains(__dbgOverlay)) return;
       if (!document.body) return;
@@ -105,7 +122,7 @@ export function buildMuxThumbnailPatchScript({
     var __render = function (sel, keys) {
       __ensureOverlay();
       if (!__dbgOverlay) return;
-      var lines = ["[REELDEBUG] " + __gpuInfo, "selectedIndex=" + sel + "  keys(" + keys.length + ")=" + JSON.stringify(keys)];
+      var lines = ["[REELDEBUG] " + __gpuInfo, __backendInfo, "selectedIndex=" + sel + "  keys(" + keys.length + ")=" + JSON.stringify(keys)];
       keys.forEach(function (k) { lines.push("  " + k + " => " + (__dbgState[k] || "pending")); });
       var fk = Object.keys(__dbgFails);
       if (fk.length) { lines.push("IMG FAILED:"); fk.forEach(function (u) { lines.push("  " + u); }); }
