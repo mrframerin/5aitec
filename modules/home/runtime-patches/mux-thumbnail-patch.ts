@@ -35,6 +35,10 @@ function dedupeProjects(projects: HomeProject[]): HomeProject[] {
 
 export function buildRuntimeProject(project: HomeProject) {
   const projectIndex = getProjectIndexByUid(project.uid) ?? 0;
+  // Point the reel straight at the static thumbnail. The reel's URL resolver
+  // prefers `image_src` over `mux_playback_id`, so this bypasses the
+  // /api/mux-image rewrite entirely — there are no real videos, only thumbnails.
+  const thumbnailSrc = `/textures/projects/project_thumb_order_${projectIndex}.jpg`;
   return {
     uid: project.uid,
     url: project.url,
@@ -49,10 +53,11 @@ export function buildRuntimeProject(project: HomeProject) {
         }
       : null,
     collaborator: null,
+    image_src: thumbnailSrc,
     mux_playback_id: `local-project-${projectIndex}`,
     brightness: null,
     contrast: null,
-    project_media: [{ mux_playback_id: `local-project-${projectIndex}` }],
+    project_media: [{ image_src: thumbnailSrc, mux_playback_id: `local-project-${projectIndex}` }],
     description: project.description ?? "",
   };
 }
