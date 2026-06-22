@@ -102,6 +102,14 @@
         "subtitle": "GSB 2017 . GSB 2025",
         "siteUrl": "https://www.gsb.stanford.edu/",
         "description": "Stanford GSB, 2025."
+      },
+      {
+        "uid": "zz-last-slot-test",
+        "url": "/work/shopos",
+        "title": "Last-Slot Test",
+        "subtitle": "Temporary positional test strip",
+        "siteUrl": "https://shopos.ai",
+        "description": "Temporary 8th strip added to push Stanford off the last reel slot for an on-device positional test. Remove after testing."
       }
     ]
   },
