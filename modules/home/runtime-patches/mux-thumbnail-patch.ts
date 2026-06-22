@@ -1,5 +1,11 @@
 import projectThumbnails from "../content/project-thumbnails.json";
 
+// Cache-buster for reel thumbnails. Bump whenever a project_thumb_order_*.jpg
+// is re-encoded so mobile devices refetch instead of serving a stale copy.
+// 20260622e: re-encoded Stanford (order_6) with the siblings' libjpeg-turbo
+// q95 progressive script (was a mozjpeg scan layout Android WebGL2 mis-decoded).
+const THUMBNAIL_VERSION = "20260622e";
+
 type Options = {
   fallbackIndex?: number | null;
   nextProject?: Record<string, unknown> | null;
@@ -38,7 +44,9 @@ export function buildRuntimeProject(project: HomeProject) {
   // Point the reel straight at the static thumbnail. The reel's URL resolver
   // prefers `image_src` over `mux_playback_id`, so this bypasses the
   // /api/mux-image rewrite entirely — there are no real videos, only thumbnails.
-  const thumbnailSrc = `/textures/projects/project_thumb_order_${projectIndex}.jpg`;
+  // The ?v= cache-buster forces devices to refetch when a thumbnail is
+  // re-encoded (bump THUMBNAIL_VERSION on any thumbnail change).
+  const thumbnailSrc = `/textures/projects/project_thumb_order_${projectIndex}.jpg?v=${THUMBNAIL_VERSION}`;
   return {
     uid: project.uid,
     url: project.url,
