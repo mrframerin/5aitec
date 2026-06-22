@@ -26,7 +26,7 @@
     },
     {
       "label": "Skills.md",
-      "href": "#"
+      "href": "/skills"
     }
   ],
   "hero": {
@@ -94,14 +94,6 @@
         "subtitle": "AR Commerce - Acquired by Flipkart",
         "siteUrl": "https://www.flipkart.com/",
         "description": "No-code AR and VR commerce tools that scaled into Flipkart Camera after acquisition."
-      },
-      {
-        "uid": "stanford",
-        "url": "/work/stanford",
-        "title": "Stanford",
-        "subtitle": "GSB 2017 . GSB 2025",
-        "siteUrl": "https://www.gsb.stanford.edu/",
-        "description": "Stanford GSB, 2025."
       }
     ]
   },
